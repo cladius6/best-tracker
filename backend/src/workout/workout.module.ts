@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { WorkoutController } from './workout.controller';
 
-@Module({})
+@Module({
+  controllers: [WorkoutController]
+})
 export class WorkoutModule {}
