@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { IExercise } from '../interfaces/exercise';
+import { IExercise } from '../interfaces/exercise.interface';
 
 @Entity()
 export class ExerciseEntity implements IExercise {
