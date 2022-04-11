@@ -1,12 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: times_regular;
+  src: url(../public/times-regular.woff);
+}
+@font-face {
+  font-family: times_italic;
+  src: url(../public/times-italic.woff);
+}
+@font-face {
+  font-family: times_b16;
+  src: url(../public/times-b-16.woff);
+}
+@font-face {
+  font-family: times_b24;
+  src: url(../public/times-b-24.woff);
+}
+@font-face {
+  font-family: times_b32;
+  src: url(../public/times-b-32.woff);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: times_regular;
 }
 
 a {
