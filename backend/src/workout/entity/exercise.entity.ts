@@ -4,7 +4,7 @@ import { IExercise } from '../interfaces/exercise';
 @Entity()
 export class ExerciseEntity implements IExercise {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
   name: string;
