@@ -10,11 +10,15 @@ import {
   ListItem,
   ListItemText,
   Collapse,
+  FormControl,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import { getExercises } from "../api/exercises";
 import { mockExercises } from "../mocks/exercises";
 import SaveIcon from "@mui/icons-material/Save";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -35,6 +39,18 @@ const Main = () => {
     setOpenModal(false);
     console.log("dodano workout");
   };
+
+  const formik = useFormik({
+    initialValues: {
+      reps: "",
+    },
+    onSubmit: (values) => {
+      console.log(values.reps);
+    },
+    validationSchema: Yup.object({
+      reps: Yup.string().required("Required"),
+    }),
+  });
 
   return (
     <Container maxWidth="md">
@@ -122,11 +138,50 @@ const Main = () => {
                     </Button>
                   </ListItem>
                 </Paper>
-               {mockExercise.id === itemId ? <Collapse in={openNestedInput} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemText primary="Repeats" />
-                  </List>
-                </Collapse> : null}
+                {mockExercise.id === itemId ? (
+                  <Collapse in={openNestedInput} timeout="auto" unmountOnExit>
+                    <List
+                      component="div"
+                      disablePadding
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                      }}
+                    >
+                      <FormControl
+                        component="form"
+                        autoComplete="off"
+                        sx={{ width: "85%" }}
+                        onSubmit={formik.handleSubmit}
+                      >
+                        <TextField
+                          fullWidth
+                          placeholder="Repeats"
+                          size="small"
+                          sx={{ marginBottom: "1rem" }}
+                          id="repeats"
+                          name="repeats"
+                          type="number"
+                          value={formik.values.reps}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          error={
+                            formik.touched.reps && Boolean(formik.errors.reps)
+                          }
+                          helperText={formik.touched.reps && formik.errors.reps}
+                        />
+                        <Button
+                          variant="outlined"
+                          type="submit"
+                          sx={{ width: "4%" }}
+                        >
+                          Add
+                        </Button>
+                      </FormControl>
+                    </List>
+                  </Collapse>
+                ) : null}
               </>
             ))}
           </List>
