@@ -1,5 +1,6 @@
 import { IWorkout } from '../../workout/interfaces/workout.interface';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { ISimpleUser } from '../interfaces/user.interface';
 
 export class UserEntity implements ISimpleUser {
   @PrimaryGeneratedColumn()
@@ -7,9 +8,5 @@ export class UserEntity implements ISimpleUser {
   @Column()
   username: string;
   @Column()
-  workouts: IWorkout[];
-}
-export interface ISimpleUser {
-  username: string;
   workouts: IWorkout[];
 }
