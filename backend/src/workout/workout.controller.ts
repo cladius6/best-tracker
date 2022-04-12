@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
 
@@ -17,6 +26,7 @@ export class WorkoutController {
   }
 
   @Post('exercise')
+  @UsePipes(new ValidationPipe({ transform: true }))
   addExercise(@Body() data: WorkoutExerciseCoDto) {
     return this.workoutService.addExercise(data.workoutId, data.exerciseId);
   }
