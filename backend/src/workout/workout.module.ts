@@ -9,5 +9,6 @@ import { ExerciseModule } from '../exercise/exercise.module';
   imports: [TypeOrmModule.forFeature([WorkoutEntity]), ExerciseModule],
   controllers: [WorkoutController],
   providers: [WorkoutService],
+  exports: [WorkoutService],
 })
 export class WorkoutModule {}
