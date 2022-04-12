@@ -1,18 +1,16 @@
 import { IWorkout } from '../interfaces/workout.interface';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ExerciseEntity } from '../../exercise/entity/exercise.entity';
 
+@Entity()
 export class WorkoutEntity implements IWorkout {
   @PrimaryGeneratedColumn()
   id: string;
   @Column()
   name: string;
-  @Column()
-  description: string;
-  @Column({
-    default: {},
-  })
-  exercises: IExercises;
+
+  @ManyToOne(() => ExerciseEntity)
+  exercises: ExerciseEntity[];
 }
 
 export interface IExercises {
