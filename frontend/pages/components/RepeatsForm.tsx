@@ -1,6 +1,5 @@
 import { Button, FormControl, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 
 export const RepeatsForm = () => {
   const formik = useFormik({
@@ -10,16 +9,15 @@ export const RepeatsForm = () => {
     onSubmit: (values) => {
       console.log(values.reps);
     },
-    validationSchema: Yup.object({
-      reps: Yup.string().required("Required"),
-    }),
   });
 
   return (
     <FormControl
       component="form"
-      autoComplete="off"
-      sx={{ width: "85%" }}
+      sx={{
+        width: "100%",
+        flexDirection: "row",
+      }}
       onSubmit={formik.handleSubmit}
     >
       <TextField
@@ -29,14 +27,16 @@ export const RepeatsForm = () => {
         sx={{ marginBottom: "1rem" }}
         id="repeats"
         name="repeats"
-        type="number"
+        type="text"
         value={formik.values.reps}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={formik.touched.reps && Boolean(formik.errors.reps)}
-        helperText={formik.touched.reps && formik.errors.reps}
       />
-      <Button variant="outlined" type="submit" sx={{ width: "4%" }}>
+      <Button
+        variant="contained"
+        type="submit"
+        sx={{ height: "70%", marginLeft: "3px" }}
+      >
         Add
       </Button>
     </FormControl>

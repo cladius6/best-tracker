@@ -4,6 +4,7 @@ import { AddNewUser } from "../../api/addNewUser";
 import { IAddNewUserResponse } from "../../types/addNewUser";
 import { Button, FormControl, TextField } from "@mui/material";
 import Link from "next/link";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 export const UsernameForm = () => {
   const formik = useFormik({
@@ -29,24 +30,39 @@ export const UsernameForm = () => {
     <FormControl
       component="form"
       autoComplete="off"
-      sx={{ width: "100%" }}
+      sx={{
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
       onSubmit={formik.handleSubmit}
     >
       <TextField
         fullWidth
-        placeholder="Username"
         size="small"
-        sx={{ marginBottom: "1rem" }}
+        sx={{ marginBottom: "1rem", marginLeft: "30px" }}
         id="username"
         name="username"
-        type="username"
+        type="text"
+        label="Your Username"
+        variant="standard"
         value={formik.values.username}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.username && Boolean(formik.errors.username)}
         helperText={formik.touched.username && formik.errors.username}
       />
-      <Button variant="outlined" type="submit">
+      <Button
+        variant="outlined"
+        type="submit"
+        sx={{
+          width: "20%",
+          height: "35px",
+          marginLeft: "20px",
+        }}
+        endIcon={<PlayArrowIcon />}
+      >
         <Link href="/main">Send!</Link>
       </Button>
     </FormControl>

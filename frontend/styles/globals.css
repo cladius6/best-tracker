@@ -26,11 +26,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  /* font-family: times_regular; */
-  font-weight: 400;
-  color: #bbbbbb;
   font-size: 16px;
-  /* background-color: #000084; */
+  background-color: #e6f2e1;
 }
 
 a {
