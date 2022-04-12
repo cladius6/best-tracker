@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @font-face {
@@ -20,17 +20,17 @@
 @font-face {
   font-family: times_b32;
   src: url(../public/times-b-32.woff);
-}
+} */
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: times_regular;
-  fonnt-weight: 400;
+  /* font-family: times_regular; */
+  font-weight: 400;
   color: #bbbbbb;
   font-size: 16px;
-  background-color: #000084;
+  /* background-color: #000084; */
 }
 
 a {
