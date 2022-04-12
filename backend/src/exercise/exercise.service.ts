@@ -13,4 +13,8 @@ export class ExerciseService {
   async create(exercise: ExerciseEntity): Promise<ExerciseEntity> {
     return await this.exercisesRepository.save(exercise);
   }
+
+  async findAll(): Promise<ExerciseEntity[]> {
+    return await this.exercisesRepository.find();
+  }
 }
