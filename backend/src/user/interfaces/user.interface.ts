@@ -1,4 +1,4 @@
-import { IWorkout } from './workout.interface';
+import { IWorkout } from '../../workout/interfaces/workout.interface';
 
 export interface IUser {
   id: string;
@@ -21,4 +21,12 @@ export interface IScore {
   scoreStrength: number;
   scoreEndurance: number;
   scoreTotal: number;
+}
+export interface ISimpleUser {
+  username: string;
+  workouts: IWorkout[];
+}
+
+export interface IAddUser {
+  username: string;
 }

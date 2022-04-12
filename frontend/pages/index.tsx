@@ -10,6 +10,9 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { AddNewUser } from "../api/addNewUser";
+import { IAddNewUserResponse } from "../types/addNewUser";
+// import Link from "next/link";
 
 const Home: NextPage = () => {
   const formik = useFormik({
@@ -18,6 +21,11 @@ const Home: NextPage = () => {
     },
     onSubmit: (values) => {
       console.log(values.username);
+      new AddNewUser()
+        .add({ username: values.username })
+        .then((res: IAddNewUserResponse) => {
+          console.log(res);
+        });
     },
     validationSchema: Yup.object({
       username: Yup.string()
@@ -70,9 +78,11 @@ const Home: NextPage = () => {
             error={formik.touched.username && Boolean(formik.errors.username)}
             helperText={formik.touched.username && formik.errors.username}
           />
+          {/* <Link href="/homePage"> */}
           <Button variant="outlined" type="submit">
             Send!
           </Button>
+          {/* </Link> */}
         </FormControl>
       </Paper>
     </Container>
