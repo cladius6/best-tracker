@@ -15,8 +15,11 @@ export class WorkoutService {
   async create(name: string, exerciseId?: string): Promise<WorkoutEntity> {
     const workout = new WorkoutEntity();
     workout.name = name;
-    const exercise = await this.exerciseService.findOne(exerciseId);
-    workout.exercises = [exercise];
+    if (!(exerciseId === undefined)) {
+      const exercise = await this.exerciseService.findOne(exerciseId);
+      workout.exercises = [exercise];
+      return await this.workoutRepository.save(workout);
+    }
     return await this.workoutRepository.save(workout);
   }
 
