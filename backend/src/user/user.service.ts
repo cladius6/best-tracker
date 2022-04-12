@@ -19,7 +19,9 @@ export class UserService {
   }
 
   async findAll(): Promise<UserEntity[]> {
-    return await this.usersRepository.find();
+    return await this.usersRepository.find({
+      relations: ['workouts'],
+    });
   }
 
   async bindWorkout(userId: string, workoutId: string) {
