@@ -16,6 +16,7 @@ RETRO_DB_USER=postgres
 RETRO_DB_PASSWORD=postgres
 RETRO_DB_NAME=retro
 ```
+```
 NOTE: You need to create retro database before next steps. If you don't know how or don't want to waste time on that, just use default database `postgre` in that case.
 ```
 3. Go to ./database and run `docker-compose up` if everything is ok continue else contact your parents :)
