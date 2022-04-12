@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -18,5 +18,10 @@ export class UserController {
   @Get('')
   async findAll() {
     return await this.userService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id) {
+    return await this.userService.findOne(id);
   }
 }

@@ -24,6 +24,12 @@ export class UserService {
     });
   }
 
+  async findOne(id: string): Promise<UserEntity> {
+    return await this.usersRepository.findOne(id, {
+      relations: ['workouts'],
+    });
+  }
+
   async bindWorkout(userId: string, workoutId: string) {
     const user = await this.usersRepository.findOne(userId, {
       relations: ['workouts'],
