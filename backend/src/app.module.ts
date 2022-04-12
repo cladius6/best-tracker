@@ -7,6 +7,7 @@ import configuration from './config/configuration';
 import { TypeOrmConfigService } from './typeorm/typeorm.config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkoutModule } from './workout/workout.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { WorkoutModule } from './workout/workout.module';
       useClass: TypeOrmConfigService,
     }),
     WorkoutModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
