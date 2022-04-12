@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ICreateWorkout } from '../interfaces/workout.interface';
 
-export class CreateWorkoutDto {
+export class CreateWorkoutDto implements ICreateWorkout {
   @IsNotEmpty()
   @IsString()
   name: string;
