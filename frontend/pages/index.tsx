@@ -12,7 +12,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AddNewUser } from "../api/addNewUser";
 import { IAddNewUserResponse } from "../types/addNewUser";
-
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const formik = useFormik({
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
             helperText={formik.touched.username && formik.errors.username}
           />
           <Button variant="outlined" type="submit">
-            Send!
+            <Link href="/main">Send!</Link>
           </Button>
         </FormControl>
       </Paper>
