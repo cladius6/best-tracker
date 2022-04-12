@@ -7,7 +7,7 @@ export class ExerciseController {
   constructor(private exerciseService: ExerciseService) {}
 
   @Get('')
-  async findAll(): Promise<any> {
+  async findAll(): Promise<ExerciseEntity[]> {
     return await this.exerciseService.findAll();
   }
 
