@@ -1,15 +1,12 @@
 import * as React from "react";
-import { Box, Button, Typography, Modal } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useState } from "react";
 import { GetExercises, MockGetExercises } from "../api/exercises";
-import { mockExercises } from "../mocks/exercises";
-import SaveIcon from "@mui/icons-material/Save";
 import { Header } from "./components/Header";
-import { ExercisesList } from "./components/ExercisesList";
-import { WorkoutName } from "./components/WorkoutName";
 import AddIcon from "@mui/icons-material/Add";
 import { ContainerComp } from "./components/ContainerComp";
 import { WorkoutsList } from "./components/WorkoutsList";
+import { ModalWithExercises } from "./components/Modal";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -17,10 +14,11 @@ const Main = () => {
   const handleOpenModal = async () => {
     setOpenModal(true);
     console.log("otwarte");
-    // const exercises = await new GetExercises().get();
-    // console.log(exercises);
     const exercises = await new MockGetExercises().get();
     console.log(exercises);
+
+    // const exercises = await new GetExercises().get();
+    // console.log(exercises);
   };
 
   const handleCloseModalAndAddWorkout = () => {
@@ -50,53 +48,10 @@ const Main = () => {
           Create new workout
         </Button>
       </Box>
-      <Modal
-        open={openModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            position: "absolute" as "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 600,
-            height: 700,
-            bgcolor: "background.paper",
-            border: "2px solid #000",
-            boxShadow: 24,
-            p: 4,
-            overflowY: "scroll",
-          }}
-        >
-          {/* <WorkoutName number={1} /> */}
-          <WorkoutName />
-          <Typography
-            id="modal-modal-description"
-            sx={{ mt: 2, textAlign: "center" }}
-          >
-            Choose your exercises
-          </Typography>
-          <ExercisesList />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              color="success"
-              onClick={handleCloseModalAndAddWorkout}
-              endIcon={<SaveIcon />}
-            >
-              Save
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
+      <ModalWithExercises
+        openModal={openModal}
+        saveWorkout={handleCloseModalAndAddWorkout}
+      />
       <WorkoutsList />
     </ContainerComp>
   );

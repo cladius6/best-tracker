@@ -15,3 +15,7 @@ export interface IGetExercises {
 export interface IAddExercises {
   add(request: IExercise): Promise<IResponseMessage>;
 }
+
+export interface IExerciseWithRepeats extends IExercise {
+  repeats: number;
+}
