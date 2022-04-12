@@ -26,3 +26,7 @@ export interface ISimpleUser {
   username: string;
   workouts: IWorkout[];
 }
+
+export interface IAddUser {
+  username: string;
+}
