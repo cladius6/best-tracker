@@ -15,12 +15,10 @@ export class ExerciseService {
   }
 
   async findAll(): Promise<ExerciseEntity[]> {
-    return await this.exercisesRepository.find({ relations: ['exercises'] });
+    return await this.exercisesRepository.find();
   }
 
   async findOne(id: string): Promise<ExerciseEntity> {
-    return await this.exercisesRepository.findOne(id, {
-      relations: ['exercises'],
-    });
+    return await this.exercisesRepository.findOne(id);
   }
 }
