@@ -1,12 +1,12 @@
 import { IWorkout } from '../../workout/interfaces/workout.interface';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ISimpleUser } from '../interfaces/user.interface';
+import { WorkoutEntity } from '../../workout/entity/workout.entity';
 
-export class UserEntity implements ISimpleUser {
+@Entity()
+export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
   username: string;
-  @Column()
-  workouts: IWorkout[];
 }
