@@ -32,6 +32,7 @@ export class WorkoutController {
   }
 
   @Delete('exercise')
+  @UsePipes(new ValidationPipe({ transform: true }))
   removeExercise(@Body() data: WorkoutExerciseCoDto) {
     return this.workoutService.removeExercise(data.workoutId, data.exerciseId);
   }
