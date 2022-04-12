@@ -10,13 +10,15 @@ import {
 } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
+import {CreateWorkoutDto} from "./dto/create-workout.dto";
 
 @Controller('workout')
 export class WorkoutController {
   constructor(private workoutService: WorkoutService) {}
 
   @Put('')
-  async create(@Body() data) {
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async create(@Body() data: CreateWorkoutDto) {
     return this.workoutService.create(data.name, data.exerciseId);
   }
 

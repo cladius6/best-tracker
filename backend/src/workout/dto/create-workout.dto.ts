@@ -6,6 +6,7 @@ export class CreateWorkoutDto {
   @IsString()
   name: string;
 
+  @IsString()
   @IsOptional()
-  exercises?: IExercise[];
+  exerciseId: string;
 }
