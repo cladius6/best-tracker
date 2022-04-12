@@ -17,9 +17,6 @@ export class ExerciseEntity implements IExercise {
   image: string;
 
   @Column()
-  video: string;
-
-  @Column()
   category: string;
 
   @Column({
