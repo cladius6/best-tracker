@@ -13,6 +13,7 @@ import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { UpdateWorkoutDto } from './dto/update-workout.dto';
 import { WorkoutEntity } from './entity/workout.entity';
+import { FindOneWorkoutDto } from './dto/find-one-workout.dto';
 
 @Controller('workout')
 export class WorkoutController {
@@ -48,7 +49,8 @@ export class WorkoutController {
   }
 
   @Get(':id')
-  async findOne(@Body() id): Promise<WorkoutEntity> {
-    return this.workoutService.findOne(id);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async findOne(@Body() data: FindOneWorkoutDto): Promise<WorkoutEntity> {
+    return this.workoutService.findOne(data.id);
   }
 }
