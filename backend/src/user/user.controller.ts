@@ -6,7 +6,7 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Put('')
-  async create(@Body() username: string) {
+  async create(@Body('username') username: string) {
     return await this.userService.create(username);
   }
 }
