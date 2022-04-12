@@ -12,6 +12,7 @@ import { WorkoutService } from './workout.service';
 import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { UpdateWorkoutDto } from './dto/update-workout.dto';
+import { WorkoutEntity } from './entity/workout.entity';
 
 @Controller('workout')
 export class WorkoutController {
@@ -42,12 +43,12 @@ export class WorkoutController {
   }
 
   @Get('')
-  async findAll() {
+  async findAll(): Promise<WorkoutEntity[]> {
     return this.workoutService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Body() id) {
+  async findOne(@Body() id): Promise<WorkoutEntity> {
     return this.workoutService.findOne(id);
   }
 }
