@@ -1,4 +1,4 @@
-import { IExercise } from './exercise.interface';
+import { IExercise } from '../../exercise/interfaces/exercise.interface';
 
 export interface IWorkout {
   id: string;
