@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 
 @Controller('workout')
@@ -18,6 +18,11 @@ export class WorkoutController {
   @Post('exercise')
   addExercise(@Body() data) {
     return this.workoutService.addExercise(data.workoutId, data.exerciseId);
+  }
+
+  @Delete('exercise')
+  removeExercise(@Body() data) {
+    return this.workoutService.removeExercise(data.workoutId, data.exerciseId);
   }
 
   @Get('')

@@ -38,6 +38,18 @@ export class WorkoutService {
     return await this.workoutRepository.save(workout);
   }
 
+  async removeExercise(
+    workoutId: string,
+    exerciseId: string,
+  ): Promise<WorkoutEntity> {
+    const workout = await this.workoutRepository.findOne(workoutId, {
+      relations: ['exercises'],
+    });
+    const exercise = await this.exerciseService.findOne(exerciseId);
+    workout.exercises = workout.exercises.filter((ex) => ex.id !== exercise.id);
+    return await this.workoutRepository.save(workout);
+  }
+
   async findAll(): Promise<WorkoutEntity[]> {
     return await this.workoutRepository.find({ relations: ['exercises'] });
   }
