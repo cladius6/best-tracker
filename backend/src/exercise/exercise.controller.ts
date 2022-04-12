@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Put } from '@nestjs/common';
 import { ExerciseService } from './exercise.service';
+import { ExerciseEntity } from './entity/exercise.entity';
 
 @Controller('exercise')
 export class ExerciseController {
@@ -8,6 +9,11 @@ export class ExerciseController {
   @Get('')
   async findAll(): Promise<any> {
     return await this.exerciseService.findAll();
+  }
+
+  @Get('/:id')
+  async findOne(@Body('id') id: string): Promise<ExerciseEntity> {
+    return await this.exerciseService.findOne(id);
   }
 
   @Put('')

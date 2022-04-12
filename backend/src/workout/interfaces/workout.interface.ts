@@ -1,7 +1,7 @@
-import { IExercise } from '../../exercise/interfaces/exercise.interface';
+import { IExercises } from '../entity/workout.entity';
 
 export interface IWorkout {
   id: string;
   name: string;
-  exercises: IExercise[];
+  // exercises: IExercises;
 }
