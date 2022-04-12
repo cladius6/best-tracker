@@ -2,8 +2,8 @@ import { IWorkout } from '../interfaces/workout.interface';
 import {
   Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ExerciseEntity } from '../../exercise/entity/exercise.entity';
@@ -15,9 +15,9 @@ export class WorkoutEntity implements IWorkout {
   @Column()
   name: string;
 
-  @ManyToOne(() => ExerciseEntity, (exercise) => exercise.id)
-  @JoinColumn({ name: 'exercise' })
-  exercises: ExerciseEntity[];
+  @ManyToMany(() => ExerciseEntity)
+  @JoinTable()
+  exercises: ExerciseEntity;
 }
 
 export interface IExercises {
