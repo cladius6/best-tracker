@@ -17,18 +17,13 @@ import { useState } from "react";
 import { getExercises } from "../api/exercises";
 import { mockExercises } from "../mocks/exercises";
 import SaveIcon from "@mui/icons-material/Save";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+// import { useFormik } from "formik";
+// import * as Yup from "yup";
 import { Header } from "./components/Header";
+import { ExercisesList } from "./components/ExercisesList";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [openNestedInput, setOpenNestedInput] = useState(false);
-  const [itemId, setItemId] = useState("");
-
-  const handleAddClick = () => {
-    setOpenNestedInput(!openNestedInput);
-  };
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -40,18 +35,6 @@ const Main = () => {
     setOpenModal(false);
     console.log("dodano workout");
   };
-
-  const formik = useFormik({
-    initialValues: {
-      reps: "",
-    },
-    onSubmit: (values) => {
-      console.log(values.reps);
-    },
-    validationSchema: Yup.object({
-      reps: Yup.string().required("Required"),
-    }),
-  });
 
   return (
     <Container maxWidth="md">
@@ -108,82 +91,7 @@ const Main = () => {
           >
             Choose your exercises
           </Typography>
-
-          <List
-            sx={{
-              width: "100%",
-              maxWidth: 360,
-              bgcolor: "background.paper",
-              margin: "0 auto",
-            }}
-          >
-            {mockExercises.map((mockExercise) => (
-              <>
-                <Paper
-                  sx={{
-                    width: "100%",
-                  }}
-                >
-                  <ListItem key={mockExercise.id} sx={{ marginBottom: "3px" }}>
-                    <ListItemText primary={`${mockExercise.name}`} />
-                    <Button
-                      onClick={() => {
-                        setItemId(mockExercise.id);
-                        handleAddClick();
-                        console.log("Add exercise to workout");
-                      }}
-                    >
-                      +
-                    </Button>
-                  </ListItem>
-                </Paper>
-                {mockExercise.id === itemId ? (
-                  <Collapse in={openNestedInput} timeout="auto" unmountOnExit>
-                    <List
-                      component="div"
-                      disablePadding
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                      }}
-                    >
-                      <FormControl
-                        component="form"
-                        autoComplete="off"
-                        sx={{ width: "85%" }}
-                        onSubmit={formik.handleSubmit}
-                      >
-                        <TextField
-                          fullWidth
-                          placeholder="Repeats"
-                          size="small"
-                          sx={{ marginBottom: "1rem" }}
-                          id="repeats"
-                          name="repeats"
-                          type="number"
-                          value={formik.values.reps}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          error={
-                            formik.touched.reps && Boolean(formik.errors.reps)
-                          }
-                          helperText={formik.touched.reps && formik.errors.reps}
-                        />
-                        <Button
-                          variant="outlined"
-                          type="submit"
-                          sx={{ width: "4%" }}
-                        >
-                          Add
-                        </Button>
-                      </FormControl>
-                    </List>
-                  </Collapse>
-                ) : null}
-              </>
-            ))}
-          </List>
+          <ExercisesList />
           <Box
             sx={{
               display: "flex",
