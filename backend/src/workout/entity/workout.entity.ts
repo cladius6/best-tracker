@@ -25,7 +25,3 @@ export class WorkoutEntity implements IWorkout {
   @ManyToOne(() => UserEntity, (user) => user.id)
   user: UserEntity;
 }
-
-export interface IExercises {
-  exercises: IExercises[];
-}
