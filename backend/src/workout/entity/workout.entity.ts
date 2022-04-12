@@ -9,6 +9,12 @@ export class WorkoutEntity implements IWorkout {
   name: string;
   @Column()
   description: string;
-  @Column()
+  @Column({
+    default: {},
+  })
+  exercises: IExercises;
+}
+
+export interface IExercises {
   exercises: ExerciseEntity[];
 }
