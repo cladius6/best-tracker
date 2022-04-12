@@ -10,7 +10,8 @@ import {
 } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
-import {CreateWorkoutDto} from "./dto/create-workout.dto";
+import { CreateWorkoutDto } from './dto/create-workout.dto';
+import { UpdateWorkoutDto } from './dto/update-workout.dto';
 
 @Controller('workout')
 export class WorkoutController {
@@ -23,8 +24,9 @@ export class WorkoutController {
   }
 
   @Post('')
-  update(@Body() data) {
-    return this.workoutService.update(data.id, data.name);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  update(@Body() data: UpdateWorkoutDto) {
+    return this.workoutService.update(data.id, data.newName);
   }
 
   @Post('exercise')
