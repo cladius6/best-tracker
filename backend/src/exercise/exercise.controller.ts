@@ -10,6 +10,11 @@ export class ExerciseController {
     return await this.exerciseService.findAll();
   }
 
+  @Get('/:id')
+  async findOne(@Body('id') id: string): Promise<any> {
+    return await this.exerciseService.findOne(id);
+  }
+
   @Put('')
   async create(@Body() exercise) {
     return await this.exerciseService.create(exercise);
