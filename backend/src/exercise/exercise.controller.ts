@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Put,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ExerciseService } from './exercise.service';
 import { ExerciseEntity } from './entity/exercise.entity';
+import { CreateExerciseDto } from './dto/create-exercise.dto';
 
 @Controller('exercise')
 export class ExerciseController {
@@ -17,7 +25,8 @@ export class ExerciseController {
   }
 
   @Put('')
-  async create(@Body() exercise) {
-    return await this.exerciseService.create(exercise);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async create(@Body() data: CreateExerciseDto) {
+    return await this.exerciseService.create(data as ExerciseEntity);
   }
 }
