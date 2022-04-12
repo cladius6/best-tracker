@@ -9,4 +9,8 @@ export class ExerciseService {
     @InjectRepository(ExerciseEntity)
     private exercisesRepository: Repository<ExerciseEntity>,
   ) {}
+
+  async create(exercise: ExerciseEntity): Promise<ExerciseEntity> {
+    return await this.exercisesRepository.save(exercise);
+  }
 }
