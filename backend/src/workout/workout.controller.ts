@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
+import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
 
 @Controller('workout')
 export class WorkoutController {
@@ -16,12 +17,12 @@ export class WorkoutController {
   }
 
   @Post('exercise')
-  addExercise(@Body() data) {
+  addExercise(@Body() data: WorkoutExerciseCoDto) {
     return this.workoutService.addExercise(data.workoutId, data.exerciseId);
   }
 
   @Delete('exercise')
-  removeExercise(@Body() data) {
+  removeExercise(@Body() data: WorkoutExerciseCoDto) {
     return this.workoutService.removeExercise(data.workoutId, data.exerciseId);
   }
 
