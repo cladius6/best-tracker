@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IExercise } from '../interfaces/exercise.interface';
+import { Muscle } from '../enum/muscle.enum';
 
 @Entity()
 export class ExerciseEntity implements IExercise {
@@ -21,14 +22,15 @@ export class ExerciseEntity implements IExercise {
   @Column()
   category: string;
 
-  @Column()
-  equipment: string[];
+  @Column({
+    type: 'enum',
+    enum: Muscle,
+    default: Muscle.Other,
+  })
+  muscle: Muscle;
 
   @Column()
-  muscles: string[];
-
-  @Column()
-  musclesSecondary: string[];
+  muscleSecondary: Muscle;
 
   @Column()
   level: string;
