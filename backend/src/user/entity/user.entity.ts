@@ -1,4 +1,4 @@
-import { IWorkout } from '../interfaces/workout.interface';
+import { IWorkout } from '../../workout/interfaces/workout.interface';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export class UserEntity implements ISimpleUser {
