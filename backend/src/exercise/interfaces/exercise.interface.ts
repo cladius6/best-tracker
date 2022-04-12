@@ -5,8 +5,8 @@ export interface IExercise {
   name: string;
   description: string;
   category: string;
-  // muscle: Muscle;
-  // muscleSecondary: Muscle;
-  // level: string;
+  muscle: Muscle;
+  muscleSecondary: Muscle;
+  level: string;
   type: string;
 }
