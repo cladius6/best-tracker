@@ -18,10 +18,12 @@ export class WorkoutEntity implements IWorkout {
   @Column()
   name: string;
 
-  @ManyToMany(() => ExerciseEntity)
+  @ManyToMany(() => ExerciseEntity, {
+    cascade: true,
+  })
   @JoinTable()
-  exercises: ExerciseEntity;
+  exercises: ExerciseEntity[];
 
   @ManyToOne(() => UserEntity, (user) => user.id)
-  user: UserEntity;
+  user?: UserEntity;
 }
