@@ -19,9 +19,10 @@ import SaveIcon from "@mui/icons-material/Save";
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openNestedInput, setOpenNestedInput] = useState(false);
+  const [itemId, setItemId] = useState("");
 
-  const handleAddClick = (id: string) => {
-    console.log(id);
+  const handleAddClick = () => {
+    setOpenNestedInput(!openNestedInput);
   };
 
   const handleOpenModal = () => {
@@ -78,11 +79,19 @@ const Main = () => {
             overflowY: "scroll",
           }}
         >
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ textAlign: "center" }}
+          >
             WORKOUT 1
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            EXERCISES LIST
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2, textAlign: "center" }}
+          >
+            Choose your exercises
           </Typography>
 
           <List
@@ -95,25 +104,29 @@ const Main = () => {
           >
             {mockExercises.map((mockExercise) => (
               <>
-                <ListItem
-                  key={mockExercise.id}
-                  sx={{ border: "1px solid black", marginBottom: "3px" }}
+                <Paper
+                  sx={{
+                    width: "100%",
+                  }}
                 >
-                  <ListItemText primary={`${mockExercise.name}`} />
-                  <Button
-                    onClick={() => {
-                      handleAddClick(mockExercise.id);
-                      console.log("Add exercise to workout");
-                    }}
-                  >
-                    +
-                  </Button>
-                </ListItem>
-                <Collapse in={openNestedInput} timeout="auto" unmountOnExit>
+                  <ListItem key={mockExercise.id} sx={{ marginBottom: "3px" }}>
+                    <ListItemText primary={`${mockExercise.name}`} />
+                    <Button
+                      onClick={() => {
+                        setItemId(mockExercise.id);
+                        handleAddClick();
+                        console.log("Add exercise to workout");
+                      }}
+                    >
+                      +
+                    </Button>
+                  </ListItem>
+                </Paper>
+               {mockExercise.id === itemId ? <Collapse in={openNestedInput} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItemText primary="Repeats" />
                   </List>
-                </Collapse>
+                </Collapse> : null}
               </>
             ))}
           </List>
