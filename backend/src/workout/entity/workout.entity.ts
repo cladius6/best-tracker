@@ -1,6 +1,6 @@
 import { IWorkout } from '../interfaces/workout.interface';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { ExerciseEntity } from './exercise.entity';
+import { ExerciseEntity } from '../../exercise/entity/exercise.entity';
 
 export class WorkoutEntity implements IWorkout {
   @PrimaryGeneratedColumn()
