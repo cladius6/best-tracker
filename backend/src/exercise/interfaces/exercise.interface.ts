@@ -1,4 +1,4 @@
-import { Muscle } from '../entity/exercise.entity';
+import { Muscle } from '../enum/muscle.enum';
 
 export interface IExercise {
   id: string;
