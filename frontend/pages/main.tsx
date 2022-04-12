@@ -19,6 +19,7 @@ import { mockExercises } from "../mocks/exercises";
 import SaveIcon from "@mui/icons-material/Save";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Header } from "./components/Header";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -54,9 +55,7 @@ const Main = () => {
 
   return (
     <Container maxWidth="md">
-      <Typography variant="h4" component="h1" align="center">
-        NON RETRO TRACKER
-      </Typography>
+      <Header />
       <Box
         sx={{
           display: "flex",
