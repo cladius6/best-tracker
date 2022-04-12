@@ -26,6 +26,18 @@ export class WorkoutService {
     return await this.workoutRepository.save(workout);
   }
 
+  async addExercise(
+    workoutId: string,
+    exerciseId: string,
+  ): Promise<WorkoutEntity> {
+    const workout = await this.workoutRepository.findOne(workoutId, {
+      relations: ['exercises'],
+    });
+    const exercise = await this.exerciseService.findOne(exerciseId);
+    workout.exercises.push(exercise);
+    return await this.workoutRepository.save(workout);
+  }
+
   async findAll(): Promise<WorkoutEntity[]> {
     return await this.workoutRepository.find({ relations: ['exercises'] });
   }

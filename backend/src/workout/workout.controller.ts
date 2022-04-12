@@ -15,6 +15,11 @@ export class WorkoutController {
     return this.workoutService.update(data.id, data.name);
   }
 
+  @Post('exercise')
+  addExercise(@Body() data) {
+    return this.workoutService.addExercise(data.workoutId, data.exerciseId);
+  }
+
   @Get('')
   async findAll() {
     return this.workoutService.findAll();
