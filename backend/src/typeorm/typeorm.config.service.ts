@@ -18,6 +18,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this.configService.get('database.password'),
       database: this.configService.get('database.name'),
       entities: [UserEntity, ExerciseEntity, WorkoutEntity],
+      keepConnectionAlive: true,
       synchronize: true,
     };
   }
