@@ -28,7 +28,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('UserModule', () => {
-    it.only('should create a new user', async () => {
+    it('should create a new user', async () => {
       const user = {
         username: 'tester',
       };
@@ -38,12 +38,52 @@ describe('AppController (e2e)', () => {
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('id');
       expect(response.body).toHaveProperty('username', 'tester');
+      expect(response).toEqual(
+        expect.objectContaining({
+          body: expect.objectContaining({
+            id: expect.any(Number),
+            username: expect.any(String),
+          }),
+        }),
+      );
     });
 
-    it.skip('should get all users', async () => {
+    it('should create a second user correctly', async () => {
+      const user = {
+        username: 'tester2',
+      };
+      const response = await request(app.getHttpServer())
+        .put('/users')
+        .send(user);
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('id');
+      expect(response.body).toHaveProperty('username', 'tester2');
+      expect(response).toEqual(
+        expect.objectContaining({
+          body: expect.objectContaining({
+            id: expect.any(Number),
+            username: expect.any(String),
+          }),
+        }),
+      );
+    });
+
+    it('should get all users', async () => {
       await request(app.getHttpServer()).get('/users').expect(200);
-      const data = await request(app.getHttpServer()).get('/users');
-      expect(data.body.length).toBe(1);
+      const response = await request(app.getHttpServer()).get('/users');
+      // Check if response body have two objects with id and username
+      expect(response.body).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: expect.any(Number),
+            username: 'tester',
+          }),
+          expect.objectContaining({
+            id: expect.any(Number),
+            username: 'tester2',
+          }),
+        ]),
+      );
     });
   });
 
