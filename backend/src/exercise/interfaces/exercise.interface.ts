@@ -10,3 +10,13 @@ export interface IExercise {
   level: string;
   type: string;
 }
+
+export interface IAddExercise {
+  name: string;
+  description: string;
+  category: string;
+  muscle: Muscle;
+  muscleSecondary: Muscle;
+  level: string;
+  type: string;
+}
