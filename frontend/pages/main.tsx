@@ -22,7 +22,7 @@ const Main = () => {
     // console.log(exercises);
   };
 
-  const handleCloseModalAndAddWorkout = () => {
+  const handleCloseModal = () => {
     setOpenModal(false);
     console.log("dodano workout");
   };
@@ -51,7 +51,7 @@ const Main = () => {
       </Box>
       <ModalWithExercises
         openModal={openModal}
-        saveWorkout={handleCloseModalAndAddWorkout}
+        closeModal={handleCloseModal}
       />
       <WorkoutsList />
     </ContainerComp>

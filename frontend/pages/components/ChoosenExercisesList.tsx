@@ -1,17 +1,21 @@
-import { List, Paper, ListItem, ListItemText, Button } from "@mui/material";
+import {
+  List,
+  Paper,
+  ListItem,
+  ListItemText,
+  Button,
+  Box,
+} from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import { IExerciseWithRepeats } from "../../types/exercises";
 
 interface ChoosenExercisesListProp {
-  saveWorkout: () => void;
   choosenExercises: IExerciseWithRepeats[];
 }
 
 export const ChoosenExercisesList = ({
-  saveWorkout,
   choosenExercises,
 }: ChoosenExercisesListProp) => {
-  console.log(choosenExercises);
   return (
     <List
       sx={{
@@ -25,27 +29,32 @@ export const ChoosenExercisesList = ({
         <>
           <Paper
             sx={{
-              width: "100%",
-              backgroundColor: "green",
+              width: "80%",
+              backgroundColor: "#2e7d32",
             }}
           >
             <ListItem key={exercise.id} sx={{ marginBottom: "3px" }}>
               <ListItemText
                 primary={`${exercise.repeats} x ${exercise.name}`}
+                sx={{ fontWeigth: "bold", textAlign: "right", color: "white" }}
               />
             </ListItem>
           </Paper>
         </>
       ))}
       {choosenExercises.length != 0 ? (
-        <Button
-          variant="contained"
-          color="success"
-          onClick={saveWorkout}
-          endIcon={<SaveIcon />}
-        >
-          Save
-        </Button>
+        <Box sx={{ display: "flex", justifyContent: "center", width: "80%" }}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => {
+              console.log(choosenExercises);
+            }}
+            endIcon={<SaveIcon />}
+          >
+            Save
+          </Button>
+        </Box>
       ) : null}
     </List>
   );

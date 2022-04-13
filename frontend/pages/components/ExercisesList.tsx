@@ -23,7 +23,6 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
     setOpenNestedInput(!openNestedInput);
   };
 
-
   const handleAddExerciseClick = (exercises: any) => {
     const exerciseWithRepeats = { ...exercises, repeats: repeats };
     console.log(exerciseWithRepeats);
@@ -49,7 +48,7 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
         <>
           <Paper
             sx={{
-              width: "100%",
+              width: "80%",
             }}
           >
             <ListItem key={mockExercise.id} sx={{ marginBottom: "3px" }}>
@@ -73,7 +72,7 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  width: "100%",
+                  width: "80%",
                 }}
               >
                 <TextField
@@ -84,6 +83,7 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
                   id="repeats"
                   name="repeats"
                   type="text"
+                  autoComplete="off"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleChange(e)
                   }
