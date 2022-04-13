@@ -8,8 +8,13 @@ import {
 } from "@mui/material";
 import StarsIcon from "@mui/icons-material/Stars";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import { IWorkout } from "../../types/addNewWorkout";
 
-export const WorkoutsList = () => {
+interface WorkoutsListProp {
+  workoutsList: IWorkout[];
+}
+
+export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
   return (
     <Paper
       square
@@ -27,9 +32,13 @@ export const WorkoutsList = () => {
         overflowY: "auto",
       }}
     >
-      <Button sx={{ justifyContent: "flex-end", width: "100%" }}>
-        <Typography fontWeight={"bold"}> WORKOUT 1</Typography>
-      </Button>
+      {workoutsList.map((workout) => (
+        <>
+          <Button sx={{ justifyContent: "flex-end", width: "100%" }}>
+            <Typography fontWeight={"bold"}>{workout.name}</Typography>
+          </Button>
+        </>
+      ))}
 
       <AppBar
         position="fixed"

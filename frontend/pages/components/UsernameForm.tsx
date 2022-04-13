@@ -12,12 +12,12 @@ export const UsernameForm = () => {
       username: "",
     },
     onSubmit: (values) => {
-      console.log(values.username);
       new AddNewUser()
         .add({ username: values.username })
         .then((res: IAddNewUserResponse) => {
           console.log(res);
         });
+      localStorage.setItem("username", values.username);
     },
     validationSchema: Yup.object({
       username: Yup.string()

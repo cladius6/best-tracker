@@ -14,12 +14,14 @@ interface ModalWithExercisesProps {
   openModal: boolean;
   closeModal: () => void;
   exercises: IExercise[];
+  refreshWorkouts: () => Promise<void>;
 }
 
 export const ModalWithExercises = ({
   openModal,
   closeModal,
   exercises,
+  refreshWorkouts,
 }: ModalWithExercisesProps) => {
   const [choosenExercises, setChoosenExercises] = useState<
     IExerciseWithRepeats[]
@@ -56,7 +58,6 @@ export const ModalWithExercises = ({
           >
             <CloseIcon />
           </IconButton>
-          <WorkoutName />
           <Typography
             id="modal-modal-description"
             sx={{ mt: 2, textAlign: "center" }}
@@ -74,7 +75,10 @@ export const ModalWithExercises = ({
               setChoosenExercises={setChoosenExercises}
               exercises={exercises}
             />
-            <ChoosenExercisesList choosenExercises={choosenExercises} />
+            <ChoosenExercisesList
+              choosenExercises={choosenExercises}
+              refreshWorkouts={refreshWorkouts}
+            />
           </Box>
           <Box
             sx={{
