@@ -6,13 +6,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ExerciseService } from './exercise.service';
+import { ExercisesService } from './exercises.service';
 import { ExerciseEntity } from './entity/exercise.entity';
 import { CreateExerciseDto } from './dto/create-exercise.dto';
 
-@Controller('exercise')
-export class ExerciseController {
-  constructor(private exerciseService: ExerciseService) {}
+@Controller('exercises')
+export class ExercisesController {
+  constructor(private exerciseService: ExercisesService) {}
 
   @Get('')
   async findAll(): Promise<ExerciseEntity[]> {

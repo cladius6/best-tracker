@@ -7,7 +7,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ExerciseEntity } from '../../exercise/entity/exercise.entity';
+import { ExerciseEntity } from '../../exercises/entity/exercise.entity';
 import { UserEntity } from '../../users/entity/user.entity';
 
 @Entity()

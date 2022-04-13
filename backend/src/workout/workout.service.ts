@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { WorkoutEntity } from './entity/workout.entity';
 import { Repository } from 'typeorm';
-import { ExerciseService } from '../exercise/exercise.service';
+import { ExercisesService } from '../exercises/exercises.service';
 
 @Injectable()
 export class WorkoutService {
   constructor(
     @InjectRepository(WorkoutEntity)
     private workoutRepository: Repository<WorkoutEntity>,
-    private exerciseService: ExerciseService,
+    private exerciseService: ExercisesService,
   ) {}
 
   async create(name: string, exerciseId?: string): Promise<WorkoutEntity> {

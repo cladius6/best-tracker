@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { UserEntity } from '../users/entity/user.entity';
-import { ExerciseEntity } from '../exercise/entity/exercise.entity';
+import { ExerciseEntity } from '../exercises/entity/exercise.entity';
 import { WorkoutEntity } from '../workout/entity/workout.entity';
 
 @Injectable()

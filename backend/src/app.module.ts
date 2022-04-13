@@ -8,7 +8,7 @@ import { TypeOrmConfigService } from './typeorm/typeorm.config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkoutModule } from './workout/workout.module';
 import { UserModule } from './users/users.module';
-import { ExerciseModule } from './exercise/exercise.module';
+import { ExercisesModule } from './exercises/exercises.module';
 const env = process.env.NODE_ENV || 'development';
 const dev = path.resolve(__dirname, `../../.env.development`);
 const test = path.resolve(__dirname, `../../.env.test`);
@@ -29,7 +29,7 @@ const test = path.resolve(__dirname, `../../.env.test`);
     }),
     WorkoutModule,
     UserModule,
-    ExerciseModule,
+    ExercisesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

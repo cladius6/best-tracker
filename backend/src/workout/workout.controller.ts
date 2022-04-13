@@ -31,13 +31,13 @@ export class WorkoutController {
     return this.workoutService.update(data.id, data.newName);
   }
 
-  @Post('exercise')
+  @Post('exercises')
   @UsePipes(new ValidationPipe({ transform: true }))
   addExercise(@Body() data: WorkoutExerciseCoDto) {
     return this.workoutService.addExercise(data.workoutId, data.exerciseId);
   }
 
-  @Delete('exercise')
+  @Delete('exercises')
   @UsePipes(new ValidationPipe({ transform: true }))
   removeExercise(@Body() data: WorkoutExerciseCoDto) {
     return this.workoutService.removeExercise(data.workoutId, data.exerciseId);
