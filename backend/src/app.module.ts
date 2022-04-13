@@ -9,23 +9,24 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkoutsModule } from './workouts/workouts.module';
 import { UserModule } from './users/users.module';
 import { ExercisesModule } from './exercises/exercises.module';
-const env = process.env.NODE_ENV || 'development';
-const dev = path.resolve(__dirname, `../../.env.development`);
-const test = path.resolve(__dirname, `../../.env.test`);
+let env = process.env.NODE_ENV;
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: env === 'test' ? test : dev,
+      envFilePath:
+        env === 'test'
+          ? path.resolve(__dirname, `../../.env.test`)
+          : path.resolve(__dirname, `../../.env.development`),
       load: [configuration],
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forRoot()],
+      imports: [ConfigModule],
       inject: [ConfigService],
-      // useClass: TypeOrmConfigService,
       useFactory: (configService: ConfigService) => {
         return new TypeOrmConfigService(configService).createTypeOrmOptions();
       },
+      // useClass: TypeOrmConfigService,
     }),
     WorkoutsModule,
     UserModule,
