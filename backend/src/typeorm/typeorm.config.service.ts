@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { UserEntity } from '../user/entity/user.entity';
+import { UserEntity } from '../users/entity/user.entity';
 import { ExerciseEntity } from '../exercise/entity/exercise.entity';
 import { WorkoutEntity } from '../workout/entity/workout.entity';
 
@@ -14,8 +14,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       type: 'postgres',
       url: this.configService.get('database.url'),
       entities: [UserEntity, ExerciseEntity, WorkoutEntity],
-      keepConnectionAlive: true,
-      synchronize: true,
+      migrationsRun: true,
+      synchronize: false,
+      migrationsTableName: 'migrations',
     };
   }
 }

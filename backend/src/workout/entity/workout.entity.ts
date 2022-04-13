@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ExerciseEntity } from '../../exercise/entity/exercise.entity';
-import { UserEntity } from '../../user/entity/user.entity';
+import { UserEntity } from '../../users/entity/user.entity';
 
 @Entity()
 export class WorkoutEntity implements IWorkout {

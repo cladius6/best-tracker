@@ -7,7 +7,7 @@ import configuration from './config/configuration';
 import { TypeOrmConfigService } from './typeorm/typeorm.config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkoutModule } from './workout/workout.module';
-import { UserModule } from './user/user.module';
+import { UserModule } from './users/users.module';
 import { ExerciseModule } from './exercise/exercise.module';
 const env = process.env.NODE_ENV || 'development';
 const dev = path.resolve(__dirname, `../../.env.development`);
