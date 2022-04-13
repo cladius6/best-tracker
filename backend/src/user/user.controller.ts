@@ -11,7 +11,7 @@ export class UserController {
   }
 
   @Post('workout')
-  async bindWorkout(@Body() data) {
+  async addWorkout(@Body() data) {
     return await this.userService.bindWorkout(data.userId, data.workoutId);
   }
 
