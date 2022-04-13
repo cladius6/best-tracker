@@ -85,6 +85,16 @@ describe('AppController (e2e)', () => {
         ]),
       );
     });
+
+    it('should get a user by id', async () => {
+      const response = await request(app.getHttpServer()).get('/users/1');
+      expect(response.body).toEqual(
+        expect.objectContaining({
+          id: expect.any(Number),
+          username: 'tester',
+        }),
+      );
+    });
   });
 
   it('/ (GET)', () => {
