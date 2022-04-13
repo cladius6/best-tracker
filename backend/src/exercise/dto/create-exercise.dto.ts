@@ -1,11 +1,8 @@
 import { IExercise } from '../interfaces/exercise.interface';
 import { Muscle } from '../enum/muscle.enum';
-import { IsEnum, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateExerciseDto implements IExercise {
-  @IsInt()
-  id: string;
-
   @IsNotEmpty()
   @IsString()
   name: string;
