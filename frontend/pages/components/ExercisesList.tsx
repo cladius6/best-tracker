@@ -9,10 +9,12 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { mockExercises } from "../../mocks/exercises";
-import { IExercisesResponse } from "../../types/exercises";
-import { RepeatsForm } from "./RepeatsForm";
 
-export const ExercisesList = (setChoosenExercises: any) => {
+interface ExercisesListProp {
+  setChoosenExercises: any;
+}
+
+export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
   const [openNestedInput, setOpenNestedInput] = useState(false);
   const [itemId, setItemId] = useState("");
   const [repeats, setRepeats] = useState("");
@@ -21,15 +23,12 @@ export const ExercisesList = (setChoosenExercises: any) => {
     setOpenNestedInput(!openNestedInput);
   };
 
-  const qwe = {
-    id: "1",
-    reps: "2",
-  };
 
   const handleAddExerciseClick = (exercises: any) => {
-    // setChoosenExercises(exercises);
+    const exerciseWithRepeats = { ...exercises, repeats: repeats };
+    console.log(exerciseWithRepeats);
     setChoosenExercises((prevState: any) => {
-      return [...prevState, exercises];
+      return [...prevState, exerciseWithRepeats];
     });
   };
 
