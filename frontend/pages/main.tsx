@@ -14,9 +14,7 @@ const Main = () => {
 
   const handleOpenModal = async () => {
     setOpenModal(true);
-    console.log("otwarte");
     const exercisesList = await new MockGetExercises().get();
-    console.log(exercisesList);
 
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
@@ -24,7 +22,6 @@ const Main = () => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    console.log("dodano workout");
   };
 
   return (

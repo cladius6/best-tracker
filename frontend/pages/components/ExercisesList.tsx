@@ -25,7 +25,6 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
 
   const handleAddExerciseClick = (exercises: any) => {
     const exerciseWithRepeats = { ...exercises, repeats: repeats };
-    console.log(exerciseWithRepeats);
     setChoosenExercises((prevState: any) => {
       return [...prevState, exerciseWithRepeats];
     });
@@ -57,7 +56,6 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
                 onClick={() => {
                   setItemId(mockExercise.id);
                   handleAddClick();
-                  console.log("Add exercise to workout");
                 }}
               >
                 +
