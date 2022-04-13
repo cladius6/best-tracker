@@ -1,13 +1,14 @@
 import * as React from "react";
 import { Box, Button } from "@mui/material";
-import { useState } from "react";
-import { GetExercises, MockGetExercises } from "../api/exercises";
+import { SetStateAction, useState } from "react";
+import { MockGetExercises } from "../api/exercises";
 import { Header } from "./components/Header";
 import AddIcon from "@mui/icons-material/Add";
 import { ContainerComp } from "./components/ContainerComp";
 import { WorkoutsList } from "./components/WorkoutsList";
 import { ModalWithExercises } from "./components/Modal";
 import { IExercisesResponse } from "../types/exercises";
+import produce from "immer";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -15,7 +16,7 @@ const Main = () => {
   const handleOpenModal = async () => {
     setOpenModal(true);
     const exercisesList = await new MockGetExercises().get();
-
+    console.log(exercisesList);
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
   };
@@ -46,10 +47,7 @@ const Main = () => {
           Create new workout
         </Button>
       </Box>
-      <ModalWithExercises
-        openModal={openModal}
-        closeModal={handleCloseModal}
-      />
+      <ModalWithExercises openModal={openModal} closeModal={handleCloseModal} />
       <WorkoutsList />
     </ContainerComp>
   );

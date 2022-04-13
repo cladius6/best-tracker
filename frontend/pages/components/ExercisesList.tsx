@@ -28,6 +28,8 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
     setChoosenExercises((prevState: any) => {
       return [...prevState, exerciseWithRepeats];
     });
+    setRepeats("");
+    setOpenNestedInput(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +82,8 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
                   sx={{ marginBottom: "1rem" }}
                   id="repeats"
                   name="repeats"
-                  type="text"
+                  type="number"
+                  value={repeats}
                   autoComplete="off"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleChange(e)
