@@ -41,7 +41,7 @@ export const ModalWithExercises = ({
             overflowY: "scroll",
           }}
         >
-          <IconButton onClick={closeModal}>
+          <IconButton onClick={() => {closeModal(); setChoosenExercises([])}}>
             <CloseIcon />
           </IconButton>
           <WorkoutName />

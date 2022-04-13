@@ -17,6 +17,7 @@ const Main = () => {
     setOpenModal(true);
     const exercisesList = await new MockGetExercises().get();
     console.log(exercisesList);
+    
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
   };
