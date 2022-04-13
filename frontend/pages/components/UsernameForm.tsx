@@ -61,9 +61,11 @@ export const UsernameForm = () => {
           height: "35px",
           marginLeft: "20px",
         }}
-        endIcon={<PlayArrowIcon />}
       >
-        <Link href="/main">Send!</Link>
+        Send!
+        <Link href="/main">
+          <PlayArrowIcon />
+        </Link>
       </Button>
     </FormControl>
   );

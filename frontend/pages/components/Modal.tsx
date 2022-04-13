@@ -2,6 +2,13 @@ import { Box, Button, Typography, Modal } from "@mui/material";
 import { ExercisesList } from "./ExercisesList";
 import { WorkoutName } from "./WorkoutName";
 import SaveIcon from "@mui/icons-material/Save";
+import { IExercise } from "../../../backend/src/exercise/interfaces/exercise.interface";
+import {
+  IExercisesResponse,
+  IExerciseWithRepeats,
+} from "../../types/exercises";
+import { ChoosenExercisesList } from "./ChoosenExercisesList";
+import { useState } from "react";
 
 interface ModalWithExercisesProps {
   openModal: boolean;
@@ -12,6 +19,8 @@ export const ModalWithExercises = ({
   openModal,
   saveWorkout,
 }: ModalWithExercisesProps) => {
+  const [choosenExercises, setChoosenExercises] = useState<IExerciseWithRepeats[]>([]);
+
   return (
     <>
       <Modal
@@ -25,8 +34,8 @@ export const ModalWithExercises = ({
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 1000,
-            height: 700,
+            width: 700,
+            height: 500,
             bgcolor: "background.paper",
             border: "2px solid #000",
             boxShadow: 24,
@@ -41,9 +50,18 @@ export const ModalWithExercises = ({
           >
             Choose your exercises
           </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
-            <ExercisesList />
-            Right Column with added exercises
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <ExercisesList setChoosenExercises={setChoosenExercises} />
+            <ChoosenExercisesList
+              saveWorkout={saveWorkout}
+              choosenExercises={choosenExercises}
+            />
           </Box>
           <Box
             sx={{
@@ -51,16 +69,7 @@ export const ModalWithExercises = ({
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
-            <Button
-              variant="contained"
-              color="success"
-              onClick={saveWorkout}
-              endIcon={<SaveIcon />}
-            >
-              Save
-            </Button>
-          </Box>
+          ></Box>
         </Box>
       </Modal>
     </>

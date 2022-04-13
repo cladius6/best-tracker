@@ -5,17 +5,36 @@ import {
   ListItemText,
   Button,
   Collapse,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import { mockExercises } from "../../mocks/exercises";
+import { IExercisesResponse } from "../../types/exercises";
 import { RepeatsForm } from "./RepeatsForm";
 
-export const ExercisesList = () => {
+export const ExercisesList = (setChoosenExercises: any) => {
   const [openNestedInput, setOpenNestedInput] = useState(false);
   const [itemId, setItemId] = useState("");
+  const [repeats, setRepeats] = useState("");
 
   const handleAddClick = () => {
     setOpenNestedInput(!openNestedInput);
+  };
+
+  const qwe = {
+    id: "1",
+    reps: "2",
+  };
+
+  const handleAddExerciseClick = (exercises: any) => {
+    // setChoosenExercises(exercises);
+    setChoosenExercises((prevState: any) => {
+      return [...prevState, exercises];
+    });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRepeats(e.target.value);
   };
 
   return (
@@ -58,7 +77,26 @@ export const ExercisesList = () => {
                   width: "100%",
                 }}
               >
-                <RepeatsForm />
+                <TextField
+                  fullWidth
+                  placeholder="Repeats"
+                  size="small"
+                  sx={{ marginBottom: "1rem" }}
+                  id="repeats"
+                  name="repeats"
+                  type="text"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleChange(e)
+                  }
+                />
+                <Button
+                  onClick={() => {
+                    handleAddExerciseClick(mockExercise);
+                  }}
+                  sx={{ height: "40px" }}
+                >
+                  Add
+                </Button>
               </List>
             </Collapse>
           ) : null}

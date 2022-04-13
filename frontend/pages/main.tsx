@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { ContainerComp } from "./components/ContainerComp";
 import { WorkoutsList } from "./components/WorkoutsList";
 import { ModalWithExercises } from "./components/Modal";
+import { IExercisesResponse } from "../types/exercises";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -14,8 +15,8 @@ const Main = () => {
   const handleOpenModal = async () => {
     setOpenModal(true);
     console.log("otwarte");
-    const exercises = await new MockGetExercises().get();
-    console.log(exercises);
+    const exercisesList = await new MockGetExercises().get();
+    console.log(exercisesList);
 
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
