@@ -6,43 +6,41 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkoutEntity } from '../src/workout/entity/workout.entity';
 import { UserEntity } from '../src/user/entity/user.entity';
 import { ExerciseEntity } from '../src/exercise/entity/exercise.entity';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
+import { userInfo } from 'os';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
   let userRepository: Repository<UserEntity>;
-  let workoutRepository: Repository<WorkoutEntity>;
-  let exerciseRepository: Repository<ExerciseEntity>;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = await moduleFixture.createNestApplication();
+    const userRepository = await getConnection().getRepository('user_entity');
     await app.init();
   });
 
   afterAll(async () => {
+    const entities = getConnection().entityMetadatas;
+    for (const entity of entities) {
+      const repository = await getConnection().getRepository(entity.name);
+      await repository.query(
+        `TRUNCATE ${entity.tableName} RESTART IDENTITY CASCADE;`,
+      );
+    }
     await app.close();
   });
 
   describe('UserModule', () => {
-    beforeEach(async () => {
-      const uncleared = await request(app.getHttpServer()).get('/users');
-      await Promise.all(
-        uncleared.body.map(async (user) => {
-          await request(app.getHttpServer()).delete(`/users/${user.id}`);
-        }),
-      );
-    });
-
-    it('should create a new user', async () => {
+    it.only('should create a new user', async () => {
       const user = {
         username: 'tester',
       };
       const response = await request(app.getHttpServer())
-        .put('/users')
+        .put('/user')
         .send(user);
       expect(response.status).toBe(200);
     });
