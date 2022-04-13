@@ -10,5 +10,6 @@ export enum Muscle {
   Traps = 'Traps',
   Calves = 'Calves',
   Cardio = 'Cardio',
+  Arms = 'Arms',
   Other = 'Other',
 }
