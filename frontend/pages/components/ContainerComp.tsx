@@ -1,6 +1,11 @@
 import { Container } from "@mui/material";
+import { ReactNode } from "react";
 
-export const ContainerComp = ({ children }: any) => {
+interface ContainerCompProp {
+  children: ReactNode;
+}
+
+export const ContainerComp = ({ children }: ContainerCompProp) => {
   return (
     <Container
       fixed

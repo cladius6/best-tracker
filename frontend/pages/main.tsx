@@ -9,14 +9,18 @@ import { WorkoutsList } from "./components/WorkoutsList";
 import { ModalWithExercises } from "./components/Modal";
 import { IExercisesResponse } from "../types/exercises";
 import produce from "immer";
+import { IExercise } from "../../backend/src/exercise/interfaces/exercise.interface";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [exercises, setExercises] = useState<IExercise[]>();
 
   const handleOpenModal = async () => {
     setOpenModal(true);
     const exercisesList = await new MockGetExercises().get();
     console.log(exercisesList);
+
+    setExercises(exercisesList.exercises);
 
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
@@ -50,7 +54,11 @@ const Main = () => {
           Create new workout
         </Button>
       </Box>
-      <ModalWithExercises openModal={openModal} closeModal={handleCloseModal} />
+      <ModalWithExercises
+        openModal={openModal}
+        closeModal={handleCloseModal}
+        exercises={exercises ?? []}
+      />
       <WorkoutsList />
     </ContainerComp>
   );

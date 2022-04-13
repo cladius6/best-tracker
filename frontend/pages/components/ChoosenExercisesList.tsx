@@ -8,10 +8,17 @@ import {
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import { IExerciseWithRepeats } from "../../types/exercises";
+import { AddNewWorkout } from "../../api/addNewWorkout";
 
 interface ChoosenExercisesListProp {
   choosenExercises: IExerciseWithRepeats[];
 }
+
+const saveWorkout = async (choosenExercises: IExerciseWithRepeats[]) => {
+  const workout = await new AddNewWorkout().add({
+    exercises: choosenExercises,
+  });
+};
 
 export const ChoosenExercisesList = ({
   choosenExercises,
@@ -49,6 +56,7 @@ export const ChoosenExercisesList = ({
             color="success"
             onClick={() => {
               console.log(choosenExercises);
+              saveWorkout(choosenExercises);
             }}
             endIcon={<SaveIcon />}
           >
