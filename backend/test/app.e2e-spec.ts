@@ -2,16 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { WorkoutEntity } from '../src/workout/entity/workout.entity';
-import { UserEntity } from '../src/user/entity/user.entity';
-import { ExerciseEntity } from '../src/exercise/entity/exercise.entity';
 import { getConnection, Repository } from 'typeorm';
-import { userInfo } from 'os';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
-  let userRepository: Repository<UserEntity>;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -19,7 +13,6 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = await moduleFixture.createNestApplication();
-    const userRepository = await getConnection().getRepository('user_entity');
     await app.init();
   });
 
@@ -40,9 +33,11 @@ describe('AppController (e2e)', () => {
         username: 'tester',
       };
       const response = await request(app.getHttpServer())
-        .put('/user')
+        .put('/users')
         .send(user);
       expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('id');
+      expect(response.body).toHaveProperty('username', 'tester');
     });
 
     it.skip('should get all users', async () => {
