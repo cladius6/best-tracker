@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { WorkoutEntity } from '../../workout/entity/workout.entity';
+import { WorkoutEntity } from '../../workouts/entity/workout.entity';
 
 @Entity()
 export class UserEntity {

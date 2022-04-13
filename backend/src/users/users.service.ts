@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { UserEntity } from './entity/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { WorkoutService } from '../workout/workout.service';
+import { WorkoutsService } from '../workouts/workouts.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
-    private workoutService: WorkoutService,
+    private workoutService: WorkoutsService,
   ) {}
 
   async create(username: string) {

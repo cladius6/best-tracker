@@ -8,16 +8,16 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { WorkoutService } from './workout.service';
+import { WorkoutsService } from './workouts.service';
 import { WorkoutExerciseCoDto } from './dto/workout-exercise-co.dto';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { UpdateWorkoutDto } from './dto/update-workout.dto';
 import { WorkoutEntity } from './entity/workout.entity';
 import { FindOneWorkoutDto } from './dto/find-one-workout.dto';
 
-@Controller('workout')
-export class WorkoutController {
-  constructor(private workoutService: WorkoutService) {}
+@Controller('workouts')
+export class WorkoutsController {
+  constructor(private workoutService: WorkoutsService) {}
 
   @Put('')
   @UsePipes(new ValidationPipe({ transform: true }))

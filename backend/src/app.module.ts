@@ -6,7 +6,7 @@ import * as path from 'path';
 import configuration from './config/configuration';
 import { TypeOrmConfigService } from './typeorm/typeorm.config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WorkoutModule } from './workout/workout.module';
+import { WorkoutsModule } from './workouts/workouts.module';
 import { UserModule } from './users/users.module';
 import { ExercisesModule } from './exercises/exercises.module';
 const env = process.env.NODE_ENV || 'development';
@@ -27,7 +27,7 @@ const test = path.resolve(__dirname, `../../.env.test`);
         return new TypeOrmConfigService(configService).createTypeOrmOptions();
       },
     }),
-    WorkoutModule,
+    WorkoutsModule,
     UserModule,
     ExercisesModule,
   ],

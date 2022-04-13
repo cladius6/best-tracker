@@ -10,7 +10,7 @@ export class UsersController {
     return await this.userService.create(username);
   }
 
-  @Post('workout')
+  @Post('workouts')
   async addWorkout(@Body() data) {
     return await this.userService.bindWorkout(data.userId, data.workoutId);
   }

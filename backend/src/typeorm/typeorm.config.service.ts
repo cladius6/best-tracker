@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { UserEntity } from '../users/entity/user.entity';
 import { ExerciseEntity } from '../exercises/entity/exercise.entity';
-import { WorkoutEntity } from '../workout/entity/workout.entity';
+import { WorkoutEntity } from '../workouts/entity/workout.entity';
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
