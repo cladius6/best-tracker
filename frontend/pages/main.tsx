@@ -17,7 +17,7 @@ const Main = () => {
     setOpenModal(true);
     const exercisesList = await new MockGetExercises().get();
     console.log(exercisesList);
-    
+
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
   };
@@ -42,7 +42,9 @@ const Main = () => {
           variant="contained"
           color="success"
           onClick={handleOpenModal}
-          sx={{ fontSize: "12px" }}
+          sx={{
+            fontSize: "12px",
+          }}
           startIcon={<AddIcon />}
         >
           Create new workout

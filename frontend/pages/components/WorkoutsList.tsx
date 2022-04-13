@@ -16,11 +16,12 @@ export const WorkoutsList = () => {
       sx={{
         marginBottom: "20px",
         width: "100%",
+        height: "400px",
         maxWidth: "350px",
         display: "block",
         margin: "0 auto",
         position: "fixed",
-        top: "50%",
+        top: "60%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         overflowY: "auto",
@@ -31,7 +32,7 @@ export const WorkoutsList = () => {
       </Button>
 
       <AppBar
-        position="sticky"
+        position="fixed"
         color="primary"
         sx={{ top: "auto", bottom: 0, marginTop: "30px" }}
       >

@@ -1,4 +1,4 @@
-import { Box, Typography, Modal, IconButton } from "@mui/material";
+import { Box, Typography, Modal, IconButton, Container } from "@mui/material";
 import { ExercisesList } from "./ExercisesList";
 import { WorkoutName } from "./WorkoutName";
 import { IExerciseWithRepeats } from "../../types/exercises";
@@ -26,7 +26,8 @@ export const ModalWithExercises = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
+        <Container
+          fixed
           sx={{
             position: "absolute" as "absolute",
             top: "50%",
@@ -41,7 +42,12 @@ export const ModalWithExercises = ({
             overflowY: "scroll",
           }}
         >
-          <IconButton onClick={() => {closeModal(); setChoosenExercises([])}}>
+          <IconButton
+            onClick={() => {
+              closeModal();
+              setChoosenExercises([]);
+            }}
+          >
             <CloseIcon />
           </IconButton>
           <WorkoutName />
@@ -68,7 +74,7 @@ export const ModalWithExercises = ({
               alignItems: "center",
             }}
           ></Box>
-        </Box>
+        </Container>
       </Modal>
     </>
   );
