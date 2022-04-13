@@ -15,6 +15,7 @@ import { ExerciseModule } from './exercise/exercise.module';
     ConfigModule.forRoot({
       envFilePath: path.resolve(__dirname, '../../.env.development'),
       load: [configuration],
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule.forRoot()],

@@ -12,11 +12,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
     return {
       type: 'postgres',
-      host: this.configService.get('database.host'),
-      port: this.configService.get('database.port'),
-      username: this.configService.get('database.user'),
-      password: this.configService.get('database.password'),
-      database: this.configService.get('database.name'),
+      url: this.configService.get('database.url'),
       entities: [UserEntity, ExerciseEntity, WorkoutEntity],
       keepConnectionAlive: true,
       synchronize: true,

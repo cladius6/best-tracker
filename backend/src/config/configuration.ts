@@ -1,9 +1,7 @@
 export default () => ({
+  api_port: process.env.API_PORT || 3000,
   database: {
-    host: process.env.POSTGRES_HOST,
-    port: parseInt(process.env.POSTGRES_PORT, 10) || 5432,
-    user: process.env.RETRO_DB_USER,
-    password: process.env.RETRO_DB_PASSWORD || 'postgres',
-    name: process.env.RETRO_DB_NAME || 'postgres',
+    node_env: process.env.NODE_ENV,
+    url: process.env.DATABASE_URL,
   },
 });
