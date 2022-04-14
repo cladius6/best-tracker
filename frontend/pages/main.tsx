@@ -9,21 +9,34 @@ import { WorkoutsList } from "./components/WorkoutsList";
 import { ModalWithExercises } from "./components/Modal";
 import { IExercisesResponse } from "../types/exercises";
 import produce from "immer";
+import { IExercise } from "../../backend/src/exercise/interfaces/exercise.interface";
+import { MockWorkoutApi } from "../api/addNewWorkout";
+import { IWorkout } from "../types/addNewWorkout";
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [exercises, setExercises] = useState<IExercise[]>();
+  const [workoutsList, setWorkoutsList] = useState<IWorkout[]>([]);
 
   const handleOpenModal = async () => {
     setOpenModal(true);
     const exercisesList = await new MockGetExercises().get();
-    console.log(exercisesList);
-    
+
+    setExercises(exercisesList.exercises);
+
     // const exercises = await new GetExercises().get();
     // console.log(exercises);
   };
 
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  const refreshWorkouts = async () => {
+    const response = await new MockWorkoutApi().get({
+      username: localStorage.getItem("username") ?? "",
+    });
+    setWorkoutsList(response.workouts);
   };
 
   return (
@@ -42,14 +55,21 @@ const Main = () => {
           variant="contained"
           color="success"
           onClick={handleOpenModal}
-          sx={{ fontSize: "12px" }}
+          sx={{
+            fontSize: "12px",
+          }}
           startIcon={<AddIcon />}
         >
           Create new workout
         </Button>
       </Box>
-      <ModalWithExercises openModal={openModal} closeModal={handleCloseModal} />
-      <WorkoutsList />
+      <ModalWithExercises
+        openModal={openModal}
+        closeModal={handleCloseModal}
+        exercises={exercises ?? []}
+        refreshWorkouts={refreshWorkouts}
+      />
+      <WorkoutsList workoutsList={workoutsList} />
     </ContainerComp>
   );
 };
