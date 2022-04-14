@@ -4,13 +4,15 @@ import { UserEntity } from '../users/entity/user.entity';
 import { ExerciseEntity } from '../exercises/entity/exercise.entity';
 import { WorkoutEntity } from '../workouts/entity/workout.entity';
 import { Injectable } from '@nestjs/common';
+import { getConnectionOptions } from 'typeorm';
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   constructor(private configService: ConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
-    console.log(this.configService.get('database.url'));
+    // console.log(this.configService.get('database.url'));
+
     return {
       name: process.env.NODE_ENV === 'test' ? 'test' : 'default',
       type: 'postgres',
@@ -25,7 +27,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       autoLoadEntities: true,
 
       entities: [UserEntity, ExerciseEntity, WorkoutEntity],
-      migrations: ['../migrations/*.ts'],
+      migrations: ['src/migrations/*.ts'],
       migrationsTableName: 'migrations',
       cli: {
         migrationsDir: 'src/migrations',
