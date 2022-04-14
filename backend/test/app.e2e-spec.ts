@@ -11,7 +11,6 @@ describe('AppController (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-    const connectionManager = getConnectionManager();
 
     app = await moduleFixture.createNestApplication();
 
@@ -53,6 +52,16 @@ describe('AppController (e2e)', () => {
         workouts: expect.any(Array),
       },
     ]);
+    expect(response.status).toBe(200);
+  });
+
+  it('#GET /users/:id should get a user', async () => {
+    const response = await request(app.getHttpServer()).get('/users/1');
+    expect(response.body).toEqual({
+      id: expect.any(Number),
+      username: 'tester',
+      workouts: expect.any(Array),
+    });
     expect(response.status).toBe(200);
   });
 
