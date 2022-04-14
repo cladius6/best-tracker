@@ -12,11 +12,25 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
     console.log(this.configService.get('database.url'));
     return {
+      name: process.env.NODE_ENV === 'test' ? 'test' : 'default',
       type: 'postgres',
       url: this.configService.get('database.url'),
+      schema: 'public',
+
+      synchronize: false,
+      migrationsRun: true,
+
+      logging: true,
+
+      autoLoadEntities: true,
+
       entities: [UserEntity, ExerciseEntity, WorkoutEntity],
-      synchronize: true,
-      keepConnectionAlive: true,
+      migrations: ['../migrations/*.ts'],
+      migrationsTableName: 'migrations',
+      cli: {
+        migrationsDir: 'src/migrations',
+        entitiesDir: 'src/**/entity',
+      },
     };
   }
 }
