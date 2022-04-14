@@ -36,7 +36,6 @@ export const ChoosenExercisesList = ({
     },
     onSubmit: (values) => {
       setWorkoutName(values.workoutName);
-      console.log(values.workoutName);
     },
     validationSchema: Yup.object({
       workoutName: Yup.string().required("Required"),

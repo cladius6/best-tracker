@@ -45,8 +45,6 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
     >
       {workoutsList.map((workout) => (
         <>
-          {/* {console.log(workoutsList)} */}
-          {console.log(workoutName)}
           <Button
             onClick={() => {
               handleOpen();
@@ -55,11 +53,17 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
             value={workout.name}
             sx={{ justifyContent: "flex-end", width: "100%" }}
           >
+            
             <Typography fontWeight={"bold"}>{workout.name}</Typography>
           </Button>
         </>
       ))}
-      <ModalWithWorkout open={open} handleClose={handleClose} workoutsList={workoutsList} workoutName={workoutName} />
+      <ModalWithWorkout
+        open={open}
+        handleClose={handleClose}
+        workoutsList={workoutsList}
+        workoutName={workoutName}
+      />
 
       <AppBar
         position="fixed"

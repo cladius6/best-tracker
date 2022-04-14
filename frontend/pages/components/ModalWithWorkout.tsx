@@ -1,5 +1,14 @@
-import {  Modal, Paper } from "@mui/material";
+import {
+  Typography,
+  Modal,
+  Paper,
+  ListItem,
+  ListItemText,
+  List,
+  IconButton,
+} from "@mui/material";
 import { IWorkout } from "../../types/addNewWorkout";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute" as "absolute",
@@ -26,24 +35,53 @@ export const ModalWithWorkout = ({
   workoutsList,
   workoutName,
 }: ModalWithWorkoutProp) => {
-  console.log(workoutsList, workoutName);
-
   return (
     <Modal
       open={open}
-      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Paper sx={style}>
+      <List sx={style}>
+        <IconButton
+          onClick={() => {
+            handleClose();
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Typography
+          sx={{
+            textAlign: "center",
+            mb: 5,
+            fontWeight: "bold",
+            fontSize: "2rem",
+          }}
+        >
+          {workoutName}
+        </Typography>
         {workoutsList.map((workout) =>
           workout.exercises.map((exercise) => (
-            <div key={exercise.id}>
-              {workout.name === workoutName ? <div>{exercise.name}</div> : null}
-            </div>
+            <>
+              <Paper
+                sx={{
+                  width: "80%",
+                }}
+              >
+                <ListItem
+                  key={exercise.id}
+                  sx={{ marginBottom: "3px", fontWeight: "bold" }}
+                >
+                  {workout.name === workoutName ? (
+                    <ListItemText
+                      primary={`${exercise.repeats} x ${exercise.name}`}
+                    />
+                  ) : null}
+                </ListItem>
+              </Paper>
+            </>
           ))
         )}
-      </Paper>
+      </List>
     </Modal>
   );
 };
