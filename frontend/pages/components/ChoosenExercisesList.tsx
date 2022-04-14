@@ -6,15 +6,11 @@ import {
   Button,
   Box,
   TextField,
-  FormControl,
-  Typography,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import { IExerciseWithRepeats } from "../../types/exercises";
 import { MockWorkoutApi } from "../../api/addNewWorkout";
 import { Dispatch, SetStateAction, useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 
 interface ChoosenExercisesListProp {
   choosenExercises: IExerciseWithRepeats[];
@@ -30,19 +26,6 @@ export const ChoosenExercisesList = ({
   setChoosenExercises,
 }: ChoosenExercisesListProp) => {
   const [workoutName, setWorkoutName] = useState("");
-  // const [displayInput, setDisplayInput] = useState("block");
-
-  const formik = useFormik({
-    initialValues: {
-      workoutName: "",
-    },
-    onSubmit: (values) => {
-      setWorkoutName(values.workoutName);
-    },
-    validationSchema: Yup.object({
-      workoutName: Yup.string().required("Required"),
-    }),
-  });
 
   const saveWorkout = async (choosenExercises: IExerciseWithRepeats[]) => {
     const workout = await new MockWorkoutApi().add({
@@ -55,62 +38,40 @@ export const ChoosenExercisesList = ({
     setChoosenExercises([]);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWorkoutName(e.target.value);
+  };
+
   return (
     <List
       sx={{
-        width: "100%",
+        width: "80%",
         maxWidth: 360,
         bgcolor: "background.paper",
         margin: "0 auto",
       }}
     >
-      <FormControl
-        component="form"
-        autoComplete="off"
+      <TextField
+        size="small"
         sx={{
-          width: "100%",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
+          marginBottom: "1rem",
+          marginLeft: "30px",
         }}
-        onSubmit={formik.handleSubmit}
-      >
-        {workoutName === "" ? (
-          <TextField
-            fullWidth
-            size="small"
-            sx={{
-              marginBottom: "1rem",
-              marginLeft: "30px",
-            }}
-            id="workoutName"
-            name="workoutName"
-            type="text"
-            label="Your Workout name"
-            variant="standard"
-            value={formik.values.workoutName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.workoutName && Boolean(formik.errors.workoutName)
-            }
-            helperText={formik.touched.workoutName && formik.errors.workoutName}
-          />
-        ) : (
-          <Typography
-            sx={{ fontWeight: "bold", fontSize: "20px", marginBottom: "10px" }}
-          >
-            {workoutName}
-          </Typography>
-        )}
-      </FormControl>
+        id="workoutName"
+        name="workoutName"
+        type="text"
+        label="Your Workout name"
+        variant="standard"
+        value={workoutName}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+      />
       {choosenExercises.map((exercise) => (
         <>
           <Paper
             sx={{
               width: "80%",
               backgroundColor: "#2e7d32",
-              justifyContent:"center"
+              justifyContent: "center",
             }}
           >
             <ListItem key={exercise.id} sx={{ marginBottom: "3px" }}>
