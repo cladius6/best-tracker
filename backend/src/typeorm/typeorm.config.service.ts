@@ -15,7 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
     if (env === 'test') {
       return {
-        name: 'default',
+        name: 'test',
         type: 'postgres',
         url: this.configService.get('database.url'),
         schema: 'public',
