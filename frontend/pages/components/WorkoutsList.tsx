@@ -21,7 +21,7 @@ interface WorkoutsListProp {
 
 export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
   const [open, setOpen] = useState(false);
-  const [workoutName, setWorkoutName] = useState("");
+  const [selectedWorkout, setSelectedWorkout] = useState<IWorkout>();
 
   const handleOpen = () => {
     setOpen(true);
@@ -51,7 +51,7 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
           <Button
             onClick={() => {
               handleOpen();
-              setWorkoutName(workout.name);
+              setSelectedWorkout(workout);
             }}
             value={workout.name}
             sx={{ justifyContent: "space-between", width: "100%" }}
@@ -64,13 +64,13 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
           </Button>
         </>
       ))}
-      <ModalWithWorkout
-        open={open}
-        handleClose={handleClose}
-        workoutsList={workoutsList}
-        workoutName={workoutName}
-      />
-
+      {selectedWorkout && (
+        <ModalWithWorkout
+          open={open}
+          handleClose={handleClose}
+          workout={selectedWorkout}
+        />
+      )}
       <AppBar
         position="fixed"
         color="primary"

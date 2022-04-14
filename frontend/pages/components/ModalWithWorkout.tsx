@@ -25,15 +25,13 @@ const style = {
 interface ModalWithWorkoutProp {
   open: boolean;
   handleClose: () => void;
-  workoutsList: IWorkout[];
-  workoutName: string;
+  workout: IWorkout;
 }
 
 export const ModalWithWorkout = ({
   open,
   handleClose,
-  workoutsList,
-  workoutName,
+  workout,
 }: ModalWithWorkoutProp) => {
   return (
     <Modal
@@ -57,30 +55,26 @@ export const ModalWithWorkout = ({
             fontSize: "2rem",
           }}
         >
-          {workoutName}
+          {workout.name}
         </Typography>
-        {workoutsList.map((workout) =>
-          workout.exercises.map((exercise) => (
-            <>
-              <Paper
-                sx={{
-                  width: "80%",
-                }}
+        {workout.exercises.map((exercise) => (
+          <>
+            <Paper
+              sx={{
+                width: "80%",
+              }}
+            >
+              <ListItem
+                key={exercise.id}
+                sx={{ marginBottom: "3px", fontWeight: "bold" }}
               >
-                <ListItem
-                  key={exercise.id}
-                  sx={{ marginBottom: "3px", fontWeight: "bold" }}
-                >
-                  {workout.name === workoutName ? (
-                    <ListItemText
-                      primary={`${exercise.repeats} x ${exercise.name}`}
-                    />
-                  ) : null}
-                </ListItem>
-              </Paper>
-            </>
-          ))
-        )}
+                <ListItemText
+                  primary={`${exercise.repeats} x ${exercise.name}`}
+                />
+              </ListItem>
+            </Paper>
+          </>
+        ))}
       </List>
     </Modal>
   );
