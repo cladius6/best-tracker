@@ -76,7 +76,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('ExercisesModule', () => {
-    it('#PUT /exercises should add an exercise', async () => {
+    it('#PUT /exercises should add an exercise correctly', async () => {
       const exercise = {
         name: 'test',
         description: 'test',
@@ -91,6 +91,53 @@ describe('AppController (e2e)', () => {
         .put('/exercises')
         .send(exercise);
       expect(response.status).toBe(200);
+    });
+
+    it('#PUT /exercises should add another exercise correctly', async () => {
+      const exercise = {
+        name: 'test123',
+        description: 'test123',
+        category: 'I dont know123',
+        image: 'No url123',
+        muscle: Muscle.Chest,
+        muscleSecondary: Muscle.Biceps,
+        type: 'test123',
+        level: 'test123',
+      };
+      const response = await request(app.getHttpServer())
+        .put('/exercises')
+        .send(exercise);
+      expect(response.status).toBe(200);
+    });
+
+    it('#GET /exercises should return all exercises correctly', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/exercises')
+        .send();
+      expect(response.body).toEqual([
+        {
+          id: expect.any(Number),
+          name: 'test',
+          description: 'test',
+          category: 'I dont know',
+          image: 'No url',
+          muscle: Muscle.Chest,
+          muscleSecondary: Muscle.Biceps,
+          type: 'test',
+          level: 'test',
+        },
+        {
+          id: expect.any(Number),
+          name: 'test123',
+          description: 'test123',
+          category: 'I dont know123',
+          image: 'No url123',
+          muscle: Muscle.Chest,
+          muscleSecondary: Muscle.Biceps,
+          type: 'test123',
+          level: 'test123',
+        },
+      ]);
     });
   });
 
