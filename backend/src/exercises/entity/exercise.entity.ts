@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IExercise } from '../interfaces/exercise.interface';
 import { Muscle } from '../enum/muscle.enum';
 
-@Entity()
+@Entity('exercises')
 export class ExerciseEntity implements IExercise {
   @PrimaryGeneratedColumn()
   id: string;

@@ -10,7 +10,7 @@ import {
 import { ExerciseEntity } from '../../exercises/entity/exercise.entity';
 import { UserEntity } from '../../users/entity/user.entity';
 
-@Entity()
+@Entity('workouts')
 export class WorkoutEntity implements IWorkout {
   @PrimaryGeneratedColumn()
   id: string;
