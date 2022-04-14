@@ -65,6 +65,13 @@ describe('AppController (e2e)', () => {
     expect(response.status).toBe(200);
   });
 
+  it('#DELETE /users/:id should delete a user', async () => {
+    const response = await request(app.getHttpServer()).delete('/users/1');
+    expect(response.status).toBe(200);
+    const checkIfDeleted = await request(app.getHttpServer()).get('/users/1');
+    expect(checkIfDeleted.body).toEqual({});
+  });
+
   afterAll(async () => {
     await new DatabaseCleaner().cleanup();
     // await app.close();

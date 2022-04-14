@@ -38,4 +38,8 @@ export class UsersService {
     user.workouts.push(workout);
     return await this.usersRepository.save(user);
   }
+
+  async delete(id: string) {
+    return await this.usersRepository.delete(id);
+  }
 }
