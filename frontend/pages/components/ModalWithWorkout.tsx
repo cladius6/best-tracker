@@ -1,4 +1,5 @@
-import { Typography, Modal, Box } from "@mui/material";
+import {  Modal, Paper } from "@mui/material";
+import { IWorkout } from "../../types/addNewWorkout";
 
 const style = {
   position: "absolute" as "absolute",
@@ -15,12 +16,17 @@ const style = {
 interface ModalWithWorkoutProp {
   open: boolean;
   handleClose: () => void;
+  workoutsList: IWorkout[];
+  workoutName: string;
 }
 
 export const ModalWithWorkout = ({
   open,
   handleClose,
+  workoutsList,
+  workoutName,
 }: ModalWithWorkoutProp) => {
+  console.log(workoutsList, workoutName);
 
   return (
     <Modal
@@ -29,14 +35,15 @@ export const ModalWithWorkout = ({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          MODAL
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          SUPER MODAL
-        </Typography>
-      </Box>
+      <Paper sx={style}>
+        {workoutsList.map((workout) =>
+          workout.exercises.map((exercise) => (
+            <div key={exercise.id}>
+              {workout.name === workoutName ? <div>{exercise.name}</div> : null}
+            </div>
+          ))
+        )}
+      </Paper>
     </Modal>
   );
 };

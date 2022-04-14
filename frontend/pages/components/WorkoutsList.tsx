@@ -18,8 +18,12 @@ interface WorkoutsListProp {
 
 export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
   const [open, setOpen] = useState(false);
+  const [workoutName, setWorkoutName] = useState("");
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   const handleClose = () => setOpen(false);
 
   return (
@@ -41,15 +45,21 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
     >
       {workoutsList.map((workout) => (
         <>
+          {/* {console.log(workoutsList)} */}
+          {console.log(workoutName)}
           <Button
-            onClick={handleOpen}
+            onClick={() => {
+              handleOpen();
+              setWorkoutName(workout.name);
+            }}
+            value={workout.name}
             sx={{ justifyContent: "flex-end", width: "100%" }}
           >
             <Typography fontWeight={"bold"}>{workout.name}</Typography>
           </Button>
         </>
       ))}
-      <ModalWithWorkout open={open} handleClose={handleClose}/>
+      <ModalWithWorkout open={open} handleClose={handleClose} workoutsList={workoutsList} workoutName={workoutName} />
 
       <AppBar
         position="fixed"
