@@ -139,6 +139,24 @@ describe('AppController (e2e)', () => {
         },
       ]);
     });
+
+    it('#GET /exercises/:id should return exercise by id correctly', async () => {
+      const id = '1';
+      const response = await request(app.getHttpServer()).get(
+        `/exercises/${id}`,
+      );
+      expect(response.body).toEqual({
+        id: 1,
+        name: 'test',
+        description: 'test',
+        category: 'I dont know',
+        image: 'No url',
+        muscle: Muscle.Chest,
+        muscleSecondary: Muscle.Biceps,
+        type: 'test',
+        level: 'test',
+      });
+    });
   });
 
   afterAll(async () => {
