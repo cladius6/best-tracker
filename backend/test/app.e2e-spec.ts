@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { getConnection } from 'typeorm';
-
+import { cleanupBeforeEachSpec } from './database-cleaner';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
@@ -13,22 +13,16 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = await moduleFixture.createNestApplication();
+
     await app.init();
   });
 
   afterAll(async () => {
-    const entities = getConnection().entityMetadatas;
-    for (const entity of entities) {
-      const repository = await getConnection().getRepository(entity.name);
-      await repository.query(
-        `TRUNCATE ${entity.tableName} RESTART IDENTITY CASCADE;`,
-      );
-    }
     await app.close();
   });
 
   describe('UserModule', () => {
-    it('should create a new user', async () => {
+    it.only('should create a new user', async () => {
       const user = {
         username: 'tester',
       };

@@ -11,7 +11,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   constructor(private configService: ConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
-    // console.log(this.configService.get('database.url'));
+    console.log(this.configService.get('database.url'));
 
     return {
       name: process.env.NODE_ENV === 'test' ? 'test' : 'default',
