@@ -5,12 +5,15 @@ import {
   Paper,
   Typography,
   Button,
+  Box,
 } from "@mui/material";
 import StarsIcon from "@mui/icons-material/Stars";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import { IWorkout } from "../../types/addNewWorkout";
 import { ModalWithWorkout } from "./ModalWithWorkout";
 import { useState } from "react";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 
 interface WorkoutsListProp {
   workoutsList: IWorkout[];
@@ -37,7 +40,7 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
         display: "block",
         margin: "0 auto",
         position: "fixed",
-        top: "50%",
+        top: "55%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         overflowY: "auto",
@@ -51,9 +54,12 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
               setWorkoutName(workout.name);
             }}
             value={workout.name}
-            sx={{ justifyContent: "flex-end", width: "100%" }}
+            sx={{ justifyContent: "space-between", width: "100%" }}
           >
-            
+            <Box>
+              <PlayCircleFilledIcon />
+              <StopCircleIcon />
+            </Box>
             <Typography fontWeight={"bold"}>{workout.name}</Typography>
           </Button>
         </>

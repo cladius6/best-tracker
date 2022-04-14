@@ -56,7 +56,12 @@ export const ModalWithExercises = ({
           </IconButton>
           <Typography
             id="modal-modal-description"
-            sx={{ textAlign: "center", mb: 5, fontWeight:"bold", fontSize:"2rem" }}
+            sx={{
+              textAlign: "center",
+              mb: 5,
+              fontWeight: "bold",
+              fontSize: "2rem",
+            }}
           >
             Choose your exercises
           </Typography>

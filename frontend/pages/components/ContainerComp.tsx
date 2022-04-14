@@ -11,9 +11,9 @@ export const ContainerComp = ({ children }: ContainerCompProp) => {
       fixed
       maxWidth="md"
       sx={{
-        height: "70vh",
+        height: "65vh",
         boxShadow: "8px 8px 24px 0px rgba(66, 68, 90, 1)",
-        marginTop: "100px",
+        marginTop: "10%",
         backgroundColor: "rgb(245,244,242)",
       }}
     >
