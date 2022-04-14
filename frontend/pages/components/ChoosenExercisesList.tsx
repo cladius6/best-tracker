@@ -6,11 +6,14 @@ import {
   Button,
   Box,
   TextField,
+  FormControl,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import { IExerciseWithRepeats } from "../../types/exercises";
 import { MockWorkoutApi } from "../../api/addNewWorkout";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 interface ChoosenExercisesListProp {
   choosenExercises: IExerciseWithRepeats[];
@@ -27,6 +30,19 @@ export const ChoosenExercisesList = ({
 }: ChoosenExercisesListProp) => {
   const [workoutName, setWorkoutName] = useState("");
 
+  const formik = useFormik({
+    initialValues: {
+      workoutName: "",
+    },
+    onSubmit: (values) => {
+      setWorkoutName(values.workoutName);
+      console.log(values.workoutName);
+    },
+    validationSchema: Yup.object({
+      workoutName: Yup.string().required("Required"),
+    }),
+  });
+
   const saveWorkout = async (choosenExercises: IExerciseWithRepeats[]) => {
     const workout = await new MockWorkoutApi().add({
       exercises: choosenExercises,
@@ -38,9 +54,6 @@ export const ChoosenExercisesList = ({
     setChoosenExercises([]);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWorkoutName(e.target.value);
-  };
   return (
     <List
       sx={{
@@ -50,18 +63,35 @@ export const ChoosenExercisesList = ({
         margin: "0 auto",
       }}
     >
-      <TextField
-        fullWidth
-        placeholder="Workout name"
-        size="small"
-        sx={{ marginBottom: "1rem" }}
-        id="workout"
-        name="workout"
-        type="text"
-        value={workoutName}
+      <FormControl
+        component="form"
         autoComplete="off"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-      />
+        sx={{
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onSubmit={formik.handleSubmit}
+      >
+        <TextField
+          fullWidth
+          size="small"
+          sx={{ marginBottom: "1rem", marginLeft: "30px" }}
+          id="workoutName"
+          name="workoutName"
+          type="text"
+          label="Your Workout name"
+          variant="standard"
+          value={formik.values.workoutName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.workoutName && Boolean(formik.errors.workoutName)
+          }
+          helperText={formik.touched.workoutName && formik.errors.workoutName}
+        />
+      </FormControl>
       {choosenExercises.map((exercise) => (
         <>
           <Paper

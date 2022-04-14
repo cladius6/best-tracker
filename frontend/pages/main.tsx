@@ -6,7 +6,7 @@ import { Header } from "./components/Header";
 import AddIcon from "@mui/icons-material/Add";
 import { ContainerComp } from "./components/ContainerComp";
 import { WorkoutsList } from "./components/WorkoutsList";
-import { ModalWithExercises } from "./components/Modal";
+import { ModalWithExercises } from "./components/ModalWithExercises";
 import { IExercise } from "../../backend/src/exercises/interfaces/exercise.interface";
 import { MockWorkoutApi } from "../api/addNewWorkout";
 import { IWorkout } from "../types/addNewWorkout";
