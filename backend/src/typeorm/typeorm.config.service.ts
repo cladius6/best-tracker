@@ -15,7 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
     if (env === 'test') {
       return {
-        name: env === 'test' ? 'test' : 'default',
+        name: 'default',
         type: 'postgres',
         url: this.configService.get('database.url'),
         schema: 'public',
@@ -35,7 +35,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       };
     } else {
       return {
-        name: env === 'test' ? 'test' : 'default',
+        name: 'default',
         type: 'postgres',
         url: this.configService.get('database.url'),
         schema: 'public',
