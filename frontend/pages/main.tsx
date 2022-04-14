@@ -34,7 +34,6 @@ const Main = () => {
     const response = await new MockWorkoutApi().get({
       username: localStorage.getItem("username") ?? "",
     });
-    debugger;
     setWorkoutsList(response.workouts);
   };
 

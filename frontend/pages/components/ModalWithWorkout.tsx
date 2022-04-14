@@ -61,7 +61,9 @@ export const ModalWithWorkout = ({
           <>
             <Paper
               sx={{
-                width: "80%",
+                width: "100%",
+                marginBottom: "10px",
+                backgroundColor: "#e9ebf847",
               }}
             >
               <ListItem

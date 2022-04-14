@@ -69,7 +69,7 @@ export const ModalWithExercises = ({
             sx={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "center",
             }}
           >
             <ExercisesList

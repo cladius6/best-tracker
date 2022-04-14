@@ -71,7 +71,7 @@ export const ChoosenExercisesList = ({
             sx={{
               width: "80%",
               backgroundColor: "#2e7d32",
-              justifyContent: "center",
+              marginBottom: "10px",
             }}
           >
             <ListItem key={exercise.id} sx={{ marginBottom: "3px" }}>

@@ -58,6 +58,8 @@ export const ExercisesList = ({
           <Paper
             sx={{
               width: "80%",
+              backgroundColor: "#e9ebf847",
+              marginBottom: "10px",
             }}
           >
             <ListItem key={exercise.id} sx={{ marginBottom: "3px" }}>
