@@ -1,15 +1,13 @@
 import * as React from "react";
 import { Box, Button } from "@mui/material";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { MockGetExercises } from "../api/exercises";
 import { Header } from "./components/Header";
 import AddIcon from "@mui/icons-material/Add";
 import { ContainerComp } from "./components/ContainerComp";
 import { WorkoutsList } from "./components/WorkoutsList";
 import { ModalWithExercises } from "./components/Modal";
-import { IExercisesResponse } from "../types/exercises";
-import produce from "immer";
-import { IExercise } from "../../backend/src/exercise/interfaces/exercise.interface";
+import { IExercise } from "../../backend/src/exercises/interfaces/exercise.interface";
 import { MockWorkoutApi } from "../api/addNewWorkout";
 import { IWorkout } from "../types/addNewWorkout";
 

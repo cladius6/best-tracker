@@ -1,14 +1,10 @@
 import { Box, Typography, Modal, IconButton, Container } from "@mui/material";
 import { ExercisesList } from "./ExercisesList";
-import { WorkoutName } from "./WorkoutName";
-import {
-  IExercisesResponse,
-  IExerciseWithRepeats,
-} from "../../types/exercises";
+import { IExerciseWithRepeats } from "../../types/exercises";
 import { ChoosenExercisesList } from "./ChoosenExercisesList";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { IExercise } from "../../../backend/src/exercise/interfaces/exercise.interface";
+import { IExercise } from "../../../backend/src/exercises/interfaces/exercise.interface";
 
 interface ModalWithExercisesProps {
   openModal: boolean;
@@ -78,6 +74,8 @@ export const ModalWithExercises = ({
             <ChoosenExercisesList
               choosenExercises={choosenExercises}
               refreshWorkouts={refreshWorkouts}
+              closeModal={closeModal}
+              setChoosenExercises={setChoosenExercises}
             />
           </Box>
           <Box

@@ -10,16 +10,20 @@ import {
 import SaveIcon from "@mui/icons-material/Save";
 import { IExerciseWithRepeats } from "../../types/exercises";
 import { MockWorkoutApi } from "../../api/addNewWorkout";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface ChoosenExercisesListProp {
   choosenExercises: IExerciseWithRepeats[];
   refreshWorkouts: () => Promise<void>;
+  closeModal: () => void;
+  setChoosenExercises: Dispatch<SetStateAction<IExerciseWithRepeats[]>>;
 }
 
 export const ChoosenExercisesList = ({
   choosenExercises,
   refreshWorkouts,
+  closeModal,
+  setChoosenExercises,
 }: ChoosenExercisesListProp) => {
   const [workoutName, setWorkoutName] = useState("");
 
@@ -30,6 +34,8 @@ export const ChoosenExercisesList = ({
       username: localStorage.getItem("username") ?? "",
     });
     refreshWorkouts();
+    closeModal();
+    setChoosenExercises([]);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
