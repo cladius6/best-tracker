@@ -53,7 +53,7 @@ export const UsernameForm = () => {
         error={formik.touched.username && Boolean(formik.errors.username)}
         helperText={formik.touched.username && formik.errors.username}
       />
-      <Link href="/main">
+      <Link href="/main" passHref>
         <Button
           variant="outlined"
           type="submit"
