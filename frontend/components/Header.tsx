@@ -12,13 +12,13 @@ export const Header = () => {
         fontSize: {
           xs: "30px",
           sm: "40px",
-          md: "50px",
-          lg: "55px",
-          xl: "55px",
+          md: "40px",
+          lg: "40px",
+          xl: "40px",
         },
       }}
     >
-      NON RETRO TRACKER
+      NO WŁAŚNIE NIE WIEM, KURCZE
     </Typography>
   );
 };
