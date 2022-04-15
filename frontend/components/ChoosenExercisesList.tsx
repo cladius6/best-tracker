@@ -8,8 +8,8 @@ import {
   TextField,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
-import { IExerciseWithRepeats } from "../../types/exercises";
-import { MockWorkoutApi } from "../../api/addNewWorkout";
+import { IExerciseWithRepeats } from "../types/exercises";
+import { MockWorkoutApi } from "../api/addNewWorkout";
 import { Dispatch, SetStateAction, useState } from "react";
 
 interface ChoosenExercisesListProp {

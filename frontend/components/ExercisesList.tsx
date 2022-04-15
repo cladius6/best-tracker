@@ -8,8 +8,8 @@ import {
   TextField,
 } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
-import { IExercise } from "../../../backend/src/exercises/interfaces/exercise.interface";
-import { IExerciseWithRepeats } from "../../types/exercises";
+import { IExercise } from "../../backend/src/exercises/interfaces/exercise.interface";
+import { IExerciseWithRepeats } from "../types/exercises";
 
 interface ExercisesListProp {
   setChoosenExercises: Dispatch<SetStateAction<IExerciseWithRepeats[]>>;

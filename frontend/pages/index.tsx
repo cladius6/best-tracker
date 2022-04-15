@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { Box, ThemeProvider } from "@mui/material";
-import { Header } from "./components/Header";
-import { UsernameForm } from "./components/UsernameForm";
-import { ContainerComp } from "./components/ContainerComp";
+import { Header } from "../components/Header";
+import { UsernameForm } from "../components/UsernameForm";
+import { ContainerComp } from "../components/ContainerComp";
 import { theme } from "../theme/defaultTheme";
 
 const Home: NextPage = () => {

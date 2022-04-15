@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import StarsIcon from "@mui/icons-material/Stars";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-import { IWorkout } from "../../types/addNewWorkout";
+import { IWorkout } from "../types/addNewWorkout";
 import { ModalWithWorkout } from "./ModalWithWorkout";
 import { useState } from "react";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";

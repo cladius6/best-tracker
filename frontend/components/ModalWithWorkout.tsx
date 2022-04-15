@@ -7,7 +7,7 @@ import {
   List,
   IconButton,
 } from "@mui/material";
-import { IWorkout } from "../../types/addNewWorkout";
+import { IWorkout } from "../types/addNewWorkout";
 import CloseIcon from "@mui/icons-material/Close";
 
 const style = {

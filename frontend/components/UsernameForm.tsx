@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { AddNewUser } from "../../api/addNewUser";
-import { IAddNewUserResponse } from "../../types/addNewUser";
+import { AddNewUser } from "../api/addNewUser";
+import { IAddNewUserResponse } from "../types/addNewUser";
 import { Button, FormControl, TextField } from "@mui/material";
 import Link from "next/link";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
