@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   Box,
+  Divider,
 } from "@mui/material";
 import StarsIcon from "@mui/icons-material/Stars";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
@@ -62,6 +63,7 @@ export const WorkoutsList = ({ workoutsList }: WorkoutsListProp) => {
             </Box>
             <Typography fontWeight={"bold"}>{workout.name}</Typography>
           </Button>
+          <Divider />
         </>
       ))}
       {selectedWorkout && (

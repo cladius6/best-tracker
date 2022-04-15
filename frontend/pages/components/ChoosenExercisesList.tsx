@@ -62,6 +62,7 @@ export const ChoosenExercisesList = ({
         type="text"
         label="Your Workout name"
         variant="standard"
+        autoComplete="off"
         value={workoutName}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
       />
