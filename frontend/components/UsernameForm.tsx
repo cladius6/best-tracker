@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { AddNewUser } from "../../api/addNewUser";
-import { IAddNewUserResponse } from "../../types/addNewUser";
+import { AddNewUser } from "../api/addNewUser";
+import { IAddNewUserResponse } from "../types/addNewUser";
 import { Button, FormControl, TextField } from "@mui/material";
 import Link from "next/link";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -12,12 +12,12 @@ export const UsernameForm = () => {
       username: "",
     },
     onSubmit: (values) => {
-      console.log(values.username);
       new AddNewUser()
         .add({ username: values.username })
         .then((res: IAddNewUserResponse) => {
           console.log(res);
         });
+      localStorage.setItem("username", values.username);
     },
     validationSchema: Yup.object({
       username: Yup.string()
@@ -53,20 +53,20 @@ export const UsernameForm = () => {
         error={formik.touched.username && Boolean(formik.errors.username)}
         helperText={formik.touched.username && formik.errors.username}
       />
-      <Button
-        variant="outlined"
-        type="submit"
-        sx={{
-          width: "20%",
-          height: "35px",
-          marginLeft: "20px",
-        }}
-      >
-        Send!
-        <Link href="/main">
+      <Link href="/main" passHref>
+        <Button
+          variant="outlined"
+          type="submit"
+          sx={{
+            width: "20%",
+            height: "35px",
+            marginLeft: "20px",
+          }}
+        >
+          Send!
           <PlayArrowIcon />
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </FormControl>
   );
 };

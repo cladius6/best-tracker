@@ -1,19 +1,23 @@
-import { Box, Typography, Modal, IconButton } from "@mui/material";
+import { Box, Typography, Modal, IconButton, Container } from "@mui/material";
 import { ExercisesList } from "./ExercisesList";
-import { WorkoutName } from "./WorkoutName";
-import { IExerciseWithRepeats } from "../../types/exercises";
+import { IExerciseWithRepeats } from "../types/exercises";
 import { ChoosenExercisesList } from "./ChoosenExercisesList";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { IExercise } from "../../backend/src/exercises/interfaces/exercise.interface";
 
 interface ModalWithExercisesProps {
   openModal: boolean;
   closeModal: () => void;
+  exercises: IExercise[];
+  refreshWorkouts: () => Promise<void>;
 }
 
 export const ModalWithExercises = ({
   openModal,
   closeModal,
+  exercises,
+  refreshWorkouts,
 }: ModalWithExercisesProps) => {
   const [choosenExercises, setChoosenExercises] = useState<
     IExerciseWithRepeats[]
@@ -26,7 +30,8 @@ export const ModalWithExercises = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
+        <Container
+          fixed
           sx={{
             position: "absolute" as "absolute",
             top: "50%",
@@ -41,13 +46,22 @@ export const ModalWithExercises = ({
             overflowY: "scroll",
           }}
         >
-          <IconButton onClick={() => {closeModal(); setChoosenExercises([])}}>
+          <IconButton
+            onClick={() => {
+              closeModal();
+              setChoosenExercises([]);
+            }}
+          >
             <CloseIcon />
           </IconButton>
-          <WorkoutName />
           <Typography
             id="modal-modal-description"
-            sx={{ mt: 2, textAlign: "center" }}
+            sx={{
+              textAlign: "center",
+              mb: 5,
+              fontWeight: "bold",
+              fontSize: "2rem",
+            }}
           >
             Choose your exercises
           </Typography>
@@ -55,11 +69,19 @@ export const ModalWithExercises = ({
             sx={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "center",
             }}
           >
-            <ExercisesList setChoosenExercises={setChoosenExercises} />
-            <ChoosenExercisesList choosenExercises={choosenExercises} />
+            <ExercisesList
+              setChoosenExercises={setChoosenExercises}
+              exercises={exercises}
+            />
+            <ChoosenExercisesList
+              choosenExercises={choosenExercises}
+              refreshWorkouts={refreshWorkouts}
+              closeModal={closeModal}
+              setChoosenExercises={setChoosenExercises}
+            />
           </Box>
           <Box
             sx={{
@@ -68,7 +90,7 @@ export const ModalWithExercises = ({
               alignItems: "center",
             }}
           ></Box>
-        </Box>
+        </Container>
       </Modal>
     </>
   );

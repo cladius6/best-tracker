@@ -7,14 +7,19 @@ import {
   Collapse,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
-import { mockExercises } from "../../mocks/exercises";
+import { Dispatch, SetStateAction, useState } from "react";
+import { IExercise } from "../../backend/src/exercises/interfaces/exercise.interface";
+import { IExerciseWithRepeats } from "../types/exercises";
 
 interface ExercisesListProp {
-  setChoosenExercises: any;
+  setChoosenExercises: Dispatch<SetStateAction<IExerciseWithRepeats[]>>;
+  exercises: IExercise[];
 }
 
-export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
+export const ExercisesList = ({
+  setChoosenExercises,
+  exercises,
+}: ExercisesListProp) => {
   const [openNestedInput, setOpenNestedInput] = useState(false);
   const [itemId, setItemId] = useState("");
   const [repeats, setRepeats] = useState("");
@@ -23,9 +28,12 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
     setOpenNestedInput(!openNestedInput);
   };
 
-  const handleAddExerciseClick = (exercises: any) => {
-    const exerciseWithRepeats = { ...exercises, repeats: repeats };
-    setChoosenExercises((prevState: any) => {
+  const handleAddExerciseClick = (exercise: IExercise) => {
+    const exerciseWithRepeats: IExerciseWithRepeats = {
+      ...exercise,
+      repeats: Number(repeats),
+    };
+    setChoosenExercises((prevState: IExerciseWithRepeats[]) => {
       return [...prevState, exerciseWithRepeats];
     });
     setRepeats("");
@@ -45,18 +53,20 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
         margin: "0 auto",
       }}
     >
-      {mockExercises.map((mockExercise) => (
+      {exercises.map((exercise) => (
         <>
           <Paper
             sx={{
               width: "80%",
+              backgroundColor: "#e9ebf847",
+              marginBottom: "10px",
             }}
           >
-            <ListItem key={mockExercise.id} sx={{ marginBottom: "3px" }}>
-              <ListItemText primary={`${mockExercise.name}`} />
+            <ListItem key={exercise.id} sx={{ marginBottom: "3px" }}>
+              <ListItemText primary={`${exercise.name}`} />
               <Button
                 onClick={() => {
-                  setItemId(mockExercise.id);
+                  setItemId(exercise.id);
                   handleAddClick();
                 }}
               >
@@ -64,7 +74,7 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
               </Button>
             </ListItem>
           </Paper>
-          {mockExercise.id === itemId ? (
+          {exercise.id === itemId ? (
             <Collapse in={openNestedInput} timeout="auto" unmountOnExit>
               <List
                 component="div"
@@ -91,7 +101,7 @@ export const ExercisesList = ({ setChoosenExercises }: ExercisesListProp) => {
                 />
                 <Button
                   onClick={() => {
-                    handleAddExerciseClick(mockExercise);
+                    handleAddExerciseClick(exercise);
                   }}
                   sx={{ height: "40px" }}
                 >
