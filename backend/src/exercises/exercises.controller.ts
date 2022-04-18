@@ -27,6 +27,6 @@ export class ExercisesController {
   @Put('')
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() data: CreateExerciseDto) {
-    return await this.exerciseService.create(data as ExerciseEntity);
+    return await this.exerciseService.create(data);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ExerciseEntity } from './entity/exercise.entity';
+import { ICreateExercise } from './interfaces/exercise.interface';
 
 @Injectable()
 export class ExercisesService {
@@ -10,7 +11,7 @@ export class ExercisesService {
     private exercisesRepository: Repository<ExerciseEntity>,
   ) {}
 
-  async create(exercise: ExerciseEntity): Promise<ExerciseEntity> {
+  async create(exercise: ICreateExercise): Promise<ExerciseEntity> {
     return await this.exercisesRepository.save(exercise);
   }
 

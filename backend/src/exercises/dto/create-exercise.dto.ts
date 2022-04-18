@@ -1,8 +1,8 @@
-import { IAddExercise } from '../interfaces/exercise.interface';
+import { ICreateExercise } from '../interfaces/exercise.interface';
 import { Muscle } from '../enum/muscle.enum';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateExerciseDto implements IAddExercise {
+export class CreateExerciseDto implements ICreateExercise {
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -14,6 +14,10 @@ export class CreateExerciseDto implements IAddExercise {
   @IsNotEmpty()
   @IsString()
   category: string;
+
+  @IsNotEmpty()
+  @IsString()
+  image: string;
 
   @IsEnum(Muscle)
   muscle: Muscle;

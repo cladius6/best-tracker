@@ -5,16 +5,18 @@ export interface IExercise {
   name: string;
   description: string;
   category: string;
-  // muscle: Muscle;
-  // muscleSecondary: Muscle;
-  // level: string;
+  muscle: Muscle;
+  muscleSecondary: Muscle;
+  level: string;
+  image: string;
   type: string;
 }
 
-export interface IAddExercise {
+export interface ICreateExercise {
   name: string;
   description: string;
   category: string;
+  image: string;
   muscle: Muscle;
   muscleSecondary: Muscle;
   level: string;
