@@ -22,11 +22,11 @@ export interface IScore {
   scoreEndurance: number;
   scoreTotal: number;
 }
-export interface ISimpleUser {
-  username: string;
-  workouts: IWorkout[];
-}
 
 export interface IAddUser {
   username: string;
+}
+
+export interface IGetUser {
+  id: string;
 }
