@@ -21,8 +21,6 @@ describe('ExercisesController (e2e)', () => {
   beforeEach(async () => {
     await new DatabaseCleaner().cleanup();
   });
-
-
   it('#PUT /exercises should add another exercise correctly', async () => {
     const exercise = {
       name: 'test123',
