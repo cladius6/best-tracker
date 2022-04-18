@@ -1,6 +1,6 @@
 # Best Gym Tracker
 ## Description
-This is the best gym tracker app that is not ready to use in development :)
+This is the best gym tracker app that is not ready to use in production :)
 
 ## Configuration guide for my frontend baby :)
 1. Download Docker Desktop and install it
